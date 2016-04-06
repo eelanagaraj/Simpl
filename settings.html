@@ -11,13 +11,30 @@
 </head>
 <body>
  
-<div data-role="page" id="home">
- 
- 
- <div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
- 	<a class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
- 		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
- 	<a class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button">
- 
+
+ <div data-role="header">
+ <h1>SIMPL</h1>
+ </div>
+ <br />
+ <a href = "#superuser" class = "ui-btn">Add a Superuser </a>
+
+</div>
+ <div class = "ui-checkbox">
+ 	<label for="checkbox-a" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on">
+ 		Can add contacts
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-a" id="checkbox-a" checked = "checked" data-cacheval="false">
+ 	<label for="checkbox-b" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on">
+ 		Advanced settings
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-b" id="checkbox-b" checked = "checked" data-cacheval="false">
+ 	<label for="checkbox-c" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-last-child ui-checkbox-on">
+ 		Additional features
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-c" id="checkbox-c" checked = "checked" data-cacheval="false">
+ </div>
+
+ <button class="ui-btn">Ok</button>
+
 </body>
 </html>

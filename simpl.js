@@ -9,7 +9,7 @@ function addContact (id_num, name, photo, phone_num, email_addr, display) {
 
 function saveContacts () {
 	if (typeof(Storage) !== "undefined") {
-		// store the most updated desktop state
+		// store the most contacts state
 		localStorage.setItem("contacts", JSON.stringify(contacts));
 	}
 	else {

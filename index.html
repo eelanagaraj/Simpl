@@ -1,22 +1,53 @@
 <!DOCTYPE html>
+<html>
+<head>
+<title>SIMPL</title>
+ 
+	<meta name="viewport" content="width=device-width, initial-scale=5">
+ 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
 
-<div data-role="page" id="contacts">
-	<div data-role="header" data-add-back-btn="true" data-rel="back">
-		<h1>CONTACTS TEST PAGE</h1>	</div>
-	<div data-role="navbar">
-		<ul>
-			//COPY NAV BAR FROM MAIN SCREEN (ADD HOME BUTTON) TOP
+<body> 
+<div data-role="page" id="home">
+ 
+ 
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
+ 		<a class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
+ 		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+ 		<a class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
+
+	<div data-role="content">
+			<p>Main contact page content goes here.</p>
+			<div>
+			<ul data-role="listview" data-inset="true">             
+				<li>Contact 1</li>
+				<li>Contact 2</li>
+				<li>Contact 3</li>
+			</ul>
+			</div>
+
+	</div>
+</div>
+
+<div data-role="page" id="zoomcontact">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
+ 		<a class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
+ 		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+ 		<a class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
+	</div>  
 </div>
 
 <div data-role="page" id="rando">
-	<div data-role="header" data-add-back-btn="true" data-rel="back">
-		<h1>DERM ND EELZ WILD ADVENTURE</h1>
-	</div>
-	<div data-role="navbar">
-		<ul>
-			<li><a href="#home" class="ui-btn">Home </a></li>
-			<li><a href="#rando" class="ui-btn">Rando</a></li>
-			<li><a href="#contacts" class="ui-btn">Contacts</a></li>
-	</div>
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
+ 		<a class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
+ 		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+ 		<a class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
+	</div> 
 </div>
+
+</body>
+</html>

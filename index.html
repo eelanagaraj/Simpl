@@ -51,18 +51,10 @@
 				<ul data-role="listview" data-theme="c" >
 					<li>
 						<a href="#zoomcontact1">
-							<img src="images/woman.png" alternate="profile picture" />
-							<h1>Sally Smith</h1>
-								<p>Daughter</p>
-							<div class="ui-li-aside"> <a href="#zoomcontact1" data-role="button"> View Contact </a></div>
-						</a>
-					</li>
-					<li>
-						<a href="#bart">
 							<img src="images/01.jpg" />
 							<h1>Bart Simpson</h1>
 							<p>Grandson</p>
-							<div class="ui-li-aside"> <a href="#" data-role="button"> View Contact </a></div>                            
+							<div class="ui-li-aside"> <a href="#zoomcontact1" data-role="button"> View Contact </a></div>                            
 						</a>
 					</li>					  
 					<li>
@@ -70,7 +62,8 @@
 							<img src="images/02.jpg" />
 							<h1>Homer Simpson</h1>
 							<p>Son</p>
-							<div class="ui-li-aside"> <a href="#" data-role="button"> View Contact </a></div>							</a>
+							<div class="ui-li-aside"> <a href="#" data-role="button"> View Contact </a></div>							
+						</a>
 					</li>
 					<li>
 						<a href="#">
@@ -85,7 +78,8 @@
 							<img src="images/04.jpg" />
 							<h1>Marge Simpson</h1>
 							<p>Daughter-in-Law</p>
-							<div class="ui-li-aside"> <a href="#" data-role="button"> View Contact </a></div>							</a>
+							<div class="ui-li-aside"> <a href="#" data-role="button"> View Contact </a></div>							
+						</a>
 					</li>
 					<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a>
 					</li>
@@ -104,11 +98,11 @@
 	</div> 
 
 	<div class="zoom_profile" data-role="content">
-		<div class="zoom_heading ui-title" data-role="header"><b>Sally Smith</b></div>
-		<div><img src="images/woman.png" alt="profile picture"></div>
+		<div class="zoom_heading ui-title" data-role="header"><b>Bart Simpson</b></div>
+		<div><img src="images/01.jpg" alt="profile picture" style="width: 70%;"></div>
 		<ui data-role="listview">
 			<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left">Call</a></li>
-			<li><a href="#videocall" class="ui-btn ui-icon-video ui-btn-icon-left">Video Call</a></li>
+			<li><a href="#video" class="ui-btn ui-icon-video ui-btn-icon-left">Video Call</a></li>
 			<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left">Message</a></li>
 		</ui>
 	</div>
@@ -211,6 +205,49 @@
 			<p> Joe Smith </p>
 		</div>
 	</div>
+</div>
+
+
+<div data-role="page" id="call">
+            <header data-role="header">
+                <h1>Now Calling</h1>
+            </header>
+            
+            <img src="images/01.jpg" class="resized" />
+            
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#zoomcontact1" data-theme="b"><h1>End Call</h1></a></li>
+                    </ul>
+            
+                    </nav>
+        
+                </footer> 
+            
+        
+        </div>
+        
+<div data-role="page" id="video">
+            <header data-role="header">
+                <h1>Now Connecting</h1>
+
+            </header>
+            
+            <img src="images/01.jpg" class="resized" />
+            
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
+                    </ul>
+            
+                    </nav>
+        
+                </footer> 
+        
+            
+        
 </div>
 
 </body>

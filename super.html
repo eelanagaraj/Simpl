@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>SIMPL</title>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=5">
+ 
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+ <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+ <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+ 
+<div data-role="page" id="home">
+
+ <div data-role="header">
+ <h1>Superuser Setup</h1>
+ </div>
+
+ <div class="ui-field-contain">
+ 	 <label for="basic">Name:</label>
+ 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+		<input type="text" name="name" id="basic" value>
+	</div>
+ 	<label for="password">Password: </label>
+ 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+ 		<input type="password" name="password" id="password" value>
+ 	</div>
+ 	<label for="number">Telephone number </label>
+ 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+ 		<input type="number" name="number" id="number" value>
+ 	</div>
+ 	<label for="email"> Email: </label>
+ 	 <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+ 	 	<input type= "email" name="email" id="email" value>
+ 	 </div>
+ </div>
+
+  <button class="ui-btn">Add Superuser</button>
+</div>
+</body>
+</html>

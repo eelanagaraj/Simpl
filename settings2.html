@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>SIMPL</title>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=5">
+ 
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+ <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+ <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+ 
+ <div data-role="header">
+ <h1>SIMPL</h1>
+ </div>
+ <br />
+ <a href = "#superuser" class = "ui-btn">Add a Superuser </a>
+
+</div>
+<div class="ui-controlgroup-controls">
+	<div class="ui-radio">
+		<label for="radio-view-a-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-first-child ui-btn-active ui-radio-on">Simple Contacts</label>
+		<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-a-a" value="list" checked="checked" data-cacheval="false">
+	</div>
+		<div class="ui-radio">
+		<label for="radio-view-b-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-last-child ui-btn-active ui-radio-on">Advanced Contacts</label>
+		<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-b-a" value="list" checked="checked" data-cacheval="false">
+	</div>
+ <div class = "ui-checkbox">
+ 	<label for="checkbox-b" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on">
+ 		Advanced settings
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-b" id="checkbox-b" checked = "checked" data-cacheval="false">
+ 	<label for="checkbox-c" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-last-child ui-checkbox-on">
+ 		Additional features
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-c" id="checkbox-c" checked = "checked" data-cacheval="false">
+ </div>
+
+ <button class="ui-btn">Ok</button>
+
+ 
+</body>
+</html>

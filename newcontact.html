@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>SIMPL</title>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=5">
+ 
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+ <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+ <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+ 
+<div data-role="page" id="home">
+
+ <div data-role="header">
+ <h1>Send new contact</h1>
+ </div>
+
+ <div class="ui-field-contain">
+ 	 <label for="basic">Name:</label>
+ 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+		<input type="text" name="name" id="basic" value>
+	</div>
+ 	<label for="number">Telephone number </label>
+ 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+ 		<input type="number" name="number" id="number" value>
+ 	</div>
+ 	<label for="email"> Email: </label>
+ 	 <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+ 	 	<input type= "email" name="email" id="email" value>
+ 	 </div>
+ </div>
+  <p>Prefer text or email?</p>
+  <div class = "ui-checkbox">
+ 	<label for="checkbox-a" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on">
+ 		Text
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-a" id="checkbox-a" checked = "checked" data-cacheval="false">
+ 	<label for="checkbox-b" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on">
+ 		Email
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-b" id="checkbox-b" checked = "checked" data-cacheval="false">
+ 	<label for="checkbox-c" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-last-child ui-checkbox-on">
+ 		No preference
+ 		</label>
+ 		<input data-theme="a" type="checkbox" name="checkbox-c" id="checkbox-c" checked = "checked" data-cacheval="false">
+ </div>
+ <p>
+ 	<p>Send to phone number </p>
+ 	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
+ 		<input type="number" name="number" id="phonenumber" value>
+ 	</div>
+</p>
+  <button class="ui-btn">Send</button>
+</div>
+</body>
+</html>

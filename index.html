@@ -27,6 +27,7 @@
 				<li><a href="#zoomcontact1">Sally Smith</a></li>
 				<li><a href="#zoomcontact2">Contact 2</a></li>
 				<li><a href="#zoomcontact3">Contact 3</a></li>
+				<li><a href="#contact_popup" data-rel="dialog" data-transition="pop" data-position-to="window">Test Contact Popup</a></li>
 			</ul>
 			</div>
 
@@ -42,7 +43,7 @@
 
 	<div class="zoom_profile" data-role="content">
 		<div<hd class="zoom_heading"> Sally Smith </hd></div>
-		<div><img src="http://weknowyourdreamz.com/image.php?pic=/images/woman/woman-04.jpg" alt="profile picture"></div>
+		<div><img src="woman.png" alt="profile picture"></div>
 		<ui data-role="listview">
 			<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left">Call</a></li>
 			<li><a href="#videocall" class="ui-btn ui-icon-video ui-btn-icon-left">Video Call</a></li>
@@ -53,20 +54,23 @@
 
 </div>
 
-<div data-role="page" id="contact_popup">
- 
- 
-	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
- 		<a class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
- 		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
- 		<a class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
-	</div> 
-
-	<div class="pop_up" data-role="content">
-// popup code goes here
+<div data-role="popup" id="contact_popup" style="dialog">
+	<div class="header" role="banner"> New Contact Request </div>
+	<div id="new_contact_info">
+		<ul>
+			<p> Mary Smith </p>
+			<p> <img src="woman.png" alt="profile picture"></p>
+			<p> Phone Number: (555) 555 - 5555 </p>
+			<p> Email: msmith@aol.com </p>
+		</ul>
+	</div>
+	<div>
+		<a href="#home" class="button-left ui-shadow" data-role="button">Yes</a>
+		<a href="#home" class="button-right ui-shadow" data-role="button">No</a>
 	</div>
 
 </div>
+ 
 
 <div data-role="page" id="inbox">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">

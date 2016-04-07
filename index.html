@@ -21,7 +21,6 @@
 	</div> 
 
 	<div data-role="content">
-			<p>Main contact page content goes here.</p>
 			<div>
 			<ul data-role="listview" data-inset="true">             
 				<li><a href="#zoomcontact1">Sally Smith</a></li>
@@ -54,8 +53,10 @@
 
 </div>
 
-<div data-role="popup" id="contact_popup" style="dialog">
-	<div class="header" role="banner"> New Contact Request </div>
+<div data-role="popup" id="contact_popup" style="dialog" data-close-btn="none">
+	<div data-form = "ui-bar-a" data-role = "header" role= "banner">
+ 		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> New Contact Request </h1>
+	</div> 
 	<div id="new_contact_info">
 		<ul>
 			<p> Mary Smith </p>

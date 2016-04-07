@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SIMPL</title>
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        
+        <style>
+            img.resized {
+                max-height: 100%;
+                max-width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <div data-role="page" id="contact">
+            <header data-role="header">
+                <h1>My Contact</h1>
+                <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+                <a href="#" data-icon="mail">InBox</a>
+                </header>
+ 
+                <article data-role="content">
+                    <ul data-role="listview" data-theme="c" >
+                        <li>
+                            <a href="#bart">
+                            <img src="images/01.jpg" />
+                            <h1>Bart Simpson</h1>
+                            <p>Call My Grandson</p>
+                            </a>
+                        </li>
+                      
+                        <li>
+                            <a href="#">
+                                <img src="images/02.jpg" />
+                                <h1>Homer Simpson</h1>
+                                <p>Call My Son</p>
+                            </a>
+                        </li>
+                      
+                        <li>
+                            <a href="#">
+                                <img src="images/03.jpg" />
+                                <h1>Lisa Simpson</h1>
+                                <p>Call My Granddaughter</p>
+                            </a>
+                        </li>
+                      
+                        <li>
+                            <a href="#">
+                                <img src="images/04.jpg" />
+                                <h1>Marge Simpson</h1>
+                                <p>Call My Daughter-in-Law</p>
+                            </a>
+                        </li>
+                  
+                  
+                    </ul> 
+                  </article>
+            <a href="#addNew" class="ui-btn ui-corner-all"><h1>Add New Contact</h1></a>
+                  
+                <footer data-role="footer" data-position="fixed">
+                    <nav data-role="navbar">
+                        <ul>
+                            <li><a href="#" data-icon="home"><h1>Home</h1></a></li>
+                            <li><a href="#" data-icon="user"><h1>Contact</h1></a></li>
+                        </ul>
+            
+                    </nav>
+        
+                </footer> 
+        </div><!--Contact Page-->
+        
+        <div data-role="page" id="addNew">
+            <header data-role="header">
+                <a href="#contact">My Contact</a>
+                <h1>Add the Number</h1>
+            </header>
+            
+            <label for="basic"><h1>What is His / Her Number?</h1></label>
+            <input type="text" name="name" id="basic" value=""  />
+            <img src="images/05.png" class="resized"/>
+            
+        
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#call" data-theme="b"><h1>Next Step</h1></a></li>
+                    </ul>
+            
+                    </nav>
+        
+                </footer> 
+        
+        </div>
+        
+        <div data-role="page" id="bart">
+            <header data-role="header">
+                <a href="#contact">My Contact</a>
+                <h1>Bart Simpson</h1>
+            </header>
+            
+            <img src="images/01.jpg" class="resized" />
+        
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#call" data-theme="b"><h1>Call Him</h1></a></li>
+                        <li><a href="#video"><h1>Video Chat</h1></a></li>
+                    </ul>
+            
+                    </nav>
+        
+                </footer> 
+        
+        </div>
+ 
+        
+        <div data-role="page" id="call">
+            <header data-role="header">
+                <h1>Now Calling</h1>
+                <a href="#contact">My Contact</a>
+            </header>
+            
+            <img src="images/01.jpg" class="resized" />
+            
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#" data-theme="b"><h1>End Calling</h1></a></li>
+                    </ul>
+            
+                    </nav>
+        
+                </footer> 
+            
+        
+        </div>
+        
+        <div data-role="page" id="video">
+            <header data-role="header">
+                <h1>Now Connecting</h1>
+                <a href="#contact">My Contact</a>
+
+            </header>
+            
+            <img src="images/01.jpg" class="resized" />
+            
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#" data-theme="b"><h1>End Video-chatting</h1></a></li>
+                    </ul>
+            
+                    </nav>
+        
+                </footer> 
+        
+            
+        
+        </div>
+        
+        
+</body>
+</html>

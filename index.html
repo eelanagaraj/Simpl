@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="simpl.js"></script>
 </head>
 
 <body> 
@@ -81,7 +82,7 @@
 	<div data-role="content">
 		<div>
 			<article data-role="content">
-				<ul data-role="listview" data-theme="c" >
+				<ul data-role="listview" data-theme="c" id="contact_list">
 					<li>
 						<a href="#zoomcontact1">
 							<img src="images/01.jpg" />
@@ -90,30 +91,6 @@
 							<div class="ui-li-aside"> <a href="#zoomcontact1" data-role="button"> View Contact </a></div>                            
 						</a>
 					</li>					  
-					<li>
-						<a href="#zoomcontact1">
-							<img src="images/02.jpg" />
-							<h1>Homer Simpson</h1>
-							<p>Son</p>
-							<div class="ui-li-aside"> <a href="#zoomcontact1" data-role="button"> View Contact </a></div>							
-						</a>
-					</li>
-					<li>
-						<a href="#zoomcontact1">
-							<img src="images/03.jpg" />
-							<h1>Lisa Simpson</h1>
-							<p>Granddaughter</p>
-							<div class="ui-li-aside"> <a href="#zoomcontact1" data-role="button"> View Contact </a></div>
-						</a>
-					</li>				  
-					<li>
-						<a href="#zoomcontact1">
-							<img src="images/04.jpg" />
-							<h1>Marge Simpson</h1>
-							<p>Daughter-in-Law</p>
-							<div class="ui-li-aside"> <a href="#zoomcontact1" data-role="button"> View Contact </a></div>							
-						</a>
-					</li>
 					<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a>
 					</li>
 					<li><a href="#add_contact"> Add Contact (Setting 2) Test </a>
@@ -132,7 +109,7 @@
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 
-	<div class="zoom_profile" data-role="content">
+	<div class="zoom_profile" data-role="content" id="zoomed_info">
 		<div class="zoom_heading ui-title" data-role="header"><b>Bart Simpson</b></div>
 		<div><img src="images/01.jpg" alt="profile picture" style="width: 70%;"></div>
 		<ui data-role="listview">

@@ -1,0 +1,6 @@
+Acknowledgements.txt
+
+for helper function stringToNum, used
+	http://stackoverflow.com/questions/1862130/strip-non-numeric-characters-from-string
+
+	

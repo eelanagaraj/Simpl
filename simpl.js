@@ -3,18 +3,57 @@
 // change fields if necessary ?? 
 // display = binary array containing settings of younger user (email vs. text, etc.)
 function addContact (name, photo_file_path, relation, phone_num, email_addr, display) {
-	id_num = contacts.contact_info.length
+	var id_num = contacts.contact_info.length;
 	contacts.contact_info.push({id: id_num, name: name, photo_file_path: photo_file_path, 
 		relation: relation, phone_num: phone_num, email_addr: email_addr, display: display});
+
+	saveContacts();
+
+	// make sure the contact list html is updated
+	var html = getContactListHTML(id_num);
+	var zoomhtml = getZoomPageHTML(id_num);
+	$("#contact_list").append(html);
+	$("#contact_list").listview('refresh');
+	$("body").append(zoomhtml);
 }
 
-//prevent spelling errors, ensure consistency???
+/* adding contacts for comfort setting 1 */
+function popupAddContact() {
+	// parse all info from the pop-up fields
+	var name = $("#popup_name").text();
+	var relation = $("#popup_relation").text();
+	var photo_src = $("#popup_photo").attr('src');
+	var phone_num = stringToNum($("#popup_number").text())
+	var email = $("#popup_email").text().split(" ")[1]
+	addContact (name, photo_src, relation, phone_num, email, 1);
+}
+
+function rerenderPopup(name, relation, photo_src, phone_num, email)
+
+/* turns number of format (###) ### - #### to 
+	#########, code from StackOverflow (see acknowledgements) */
+function stringToNum (stuff){
+	return (stuff.replace(/\D/g,''));
+}
+
+
+/* for comfort setting 2 */
+function userAddContact () {
+	var name = $("#new_name_field").val();
+	// relation = --> figure out how to get the radio button form input
+	var default_pic = "woman.png"
+	//addContact(name, default_pic, relation, phone_num, email_addr, display);
+}
+
+
+/* helper function to prevent spelling errors, ensure consistency??? */
 function getRelation (rel_code) {
-	rels = ["Mother", "Father", "Daughter", "Son", "Granddaughter", "Grandson", "Cousin", "Friend"];
+	var rels = ["Mother", "Father", "Daughter", "Son", "Granddaughter", "Grandson", "Cousin", "Friend"];
 	return rels[rel_code]
 }
 
 
+/* function that saves contact list to html5 local storage*/
 function saveContacts () {
 	if (typeof(Storage) !== "undefined") {
 		// store the most contacts state
@@ -26,20 +65,23 @@ function saveContacts () {
 	}
 }
 
+
+/* loads contacts stored in html5 local storage if it exists
+	or if it does not exist, creates new contact list. */
 function loadContacts () {
-	stuff = JSON.parse(localStorage.getItem("contacts"));
+	var stuff = JSON.parse(localStorage.getItem("contacts"));
 	// make sure not null, if no contacts
 	return stuff ? stuff : {contact_info:[]}
 }
 
-
+/* simple helper that returns a contact given id_number */
 function getContact (id_num) {
 	return contacts.contact_info[id_num];
 }
 
-
-function get_string_header () {
-	html = ""
+/* helper function that returns the html string of the header */
+function getStringHeader () {
+	var html = ""
 	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">'
 	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
 	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>'
@@ -48,47 +90,68 @@ function get_string_header () {
 	return html
 }
 
+
+/* helper function that adds a contact to the main display list*/
+function getContactListHTML (id) {
+	var html = "";
+	html += '<li class="ui-li-has-thumb ui-first-child">'
+	html += '<a href="#zoomcontact' + id+ '">'
+	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
+	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
+	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
+	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button"> View Contact </a></div>' 
+	html += '</a></li>'
+	//$("#contact_list").append(html);
+	return html;
+
+}
+
+
+/* helper function that creates zoom pages for a contact id=i*/
+function getZoomPageHTML(id) {
+	var zoomhtml = "";
+	zoomhtml += '<div data-role="page" id="zoomcontact' + id + '">';
+	zoomhtml += getStringHeader();
+	zoomhtml += '<div class="zoom_profile" data-role="content">'
+	zoomhtml += '<div class="zoom_heading ui-title" data-role="header"><h3>' + contacts.contact_info[id].name + '</h3></div>'
+	zoomhtml += '<div><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 80%;"></div>'
+	zoomhtml += '<ui data-role="listview">'
+	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
+	zoomhtml += '<li><a href="#video" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
+	zoomhtml += '<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'
+	zoomhtml += '</ui></div></div>'
+	return zoomhtml;
+	//$("body").append(zoomhtml);
+}
+
+
+/* initializes Simpl contacts list and creates necessary zoom pages*/
 function initializeSimpl () {
 	var html = "";
+	var zoomhtml = "";
+
+	// for testing only!! --> the buttons for popup and add new contact
+	html += '<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a></li>'
+	html += '<li><a href="#add_contact"> Add Contact (Setting 2) Test </a></li>'
+
 	for (var i = 0; i < contacts.contact_info.length; i++) {
-		html += '<li>'
-		html += '<a href="#zoomcontact' + i+ '">' // if necessary, change this to a specific name --> ADD onclick="displayContactInfo()"
-		html += '<img src=' + contacts.contact_info[i].photo_file_path + ' />'
-		html += '<h1>' + contacts.contact_info[i].name + '</h1>'
-		html += '<p>' + contacts.contact_info[i].relation + '</p>' // maybe take this out if needbe, or add a condition
-		html += '<div class="ui-li-aside"><a href="#zoomcontact' + i + '" data-role="button"> View Contact </a></div>' // --> ADD onclick="displayContactInfo()"
-		html += '</a></li>'
-		addZoomPage(i);
+		html += getContactListHTML(i);
+		zoomhtml += getZoomPageHTML(i);
 		// if (contacts.contact_info.display[i]) 
 			// display phone/video? this may be for way later
 	}
-	$("#contact_list").append(html); 
-	// add new pages for #zoomcontacti
-	// save display ??
-}
-
-function addZoomPage(i) {
-	zoomhtml = "";
-	zoomhtml += '<div data-role="page" id="zoomcontact' + i + '">';
-	zoomhtml += get_string_header();
-	zoomhtml += '<div class="zoom_profile" data-role="content">'
-	zoomhtml += '<div class="zoom_heading ui-title" data-role="header"><b>' + contacts.contact_info[i].name + '</b></div>'
-	zoomhtml += '<div><img src=' + contacts.contact_info[i].photo_file_path + ' alt="profile picture" style="width: 70%;"></div>'
-	zoomhtml += '<ui data-role="listview">'
-	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left">Call</a></li>'
-	zoomhtml += '<li><a href="#video" class="ui-btn ui-icon-video ui-btn-icon-left">Video Call</a></li>'
-	zoomhtml += '<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left">Message</a></li>'
-	zoomhtml += '</ui></div></div>'
+	$("#contact_list").html(html);
 	$("body").append(zoomhtml);
 }
 
 
-
-// render zoomed in contact page at #zoomedcontact1
-function displayContactProfile (id_num) {
+/* DEFUNCT DO NOT USE, USE addZoomPage!!
+	if time: modify to render zoomed-in contact page at #zoomedcontact1 
+	to conserve resources, not write obscenely huge html files*/
+function displayContactProfile () {
 	console.log($(this).attr("data-index"));
 	id_num = $(this.attr("data-index"));
-	html = ""
+	var html = ""
 	html += '<div class="zoom_heading ui-title" data-role="header"><b>'
 	html += contacts.contact_info[id_num].name + '</b></div>'
 	html += '<div><img src=' + contacts.contact_info[id_num].photo_file_path + ' alt="profile picture" style="width: 70%;"></div>'
@@ -103,7 +166,7 @@ function displayContactProfile (id_num) {
 
 $(function() {
 	contacts = loadContacts();
-	// to test
+	// for testing : 
 	//addContact("Homer Simpson", "images/02.jpg", "Son", 5555555555, "hsimps@aol.com", 0);
 	//addContact("Lisa Simpson", "images/03.jpg", "Granddaughter", 5555555555, "lsimps@aol.com", 0);
 	//addContact("Marge Simpson", "images/04.jpg", "Daugher-in-law", 5555555555, "msimps@aol.com", 0);

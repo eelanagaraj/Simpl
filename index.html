@@ -83,10 +83,6 @@
 		<div>
 			<article data-role="content">
 				<ul data-role="listview" data-theme="c" id="contact_list">		  
-					<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a>
-					</li>
-					<li><a href="#add_contact"> Add Contact (Setting 2) Test </a>
-					</li>
 				</ul> 
 			</article>
 		</div>
@@ -99,14 +95,15 @@
 	</div> 
 	<div id="new_contact_info">
 		<ul>
-			<p> Mary Smith </p>
-			<p> <img src="images/woman.png" alt="profile picture"></p>
-			<p> Phone Number: (555) 555 - 5555 </p>
-			<p> Email: msmith@aol.com </p>
+			<h1><p id="popup_name">Bart Simpson</p></h1>
+			<h3><p id="popup_relation">Grandson</p></h3>
+			<p> <img src="images/01.jpg" alt="profile picture" id="popup_photo" style="width: 80%;"></p>
+			<h3><p id="popup_number">Phone Number: (828) 203 - 9200</p></h3>
+			<h3><p id="popup_email">Email: bartsimpson@hotmail.com</p></h3>
 		</ul>
 	</div>
 	<div>
-		<a href="#home" class="button-left ui-shadow" data-role="button">Yes</a>
+		<a href="#home" class="button-left ui-shadow" data-role="button" ontap="popupAddContact()" onvclick="popupAddContact()" onclick="popupAddContact()">Yes</a>
 		<a href="#home" class="button-right ui-shadow" data-role="button">No</a>
 	</div>
 </div>
@@ -268,18 +265,19 @@
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div>
 
+	<div>
 	<label for="basic"><h1>Enter Name:</h1></label>
-	<input type="text" name="name" id="new_name_field" value="" placeholder="Type Name" />
+	<input type="text" name="name" id="new_name_field" placeholder="Type Name" />
 	<label for="basic"><h1>Enter Number:</h1></label>
-	<input type="tel" name="name" id="basic" value=""  />
+	<input type="tel" id="number_field" value=""  />
 	<form name="keypad">
 		<table border=2>
 			<tr>
 				<td colspan=4><input type=text name="display"></td>
 			</tr>
 			<tr>
-				<td><input type=button value="1" onvclick="keypad.display.val() +='0'"></td>
-				<td><input type=button value="2" onvclick="keypad.display.value+='1'"></td>
+				<td><input type=button value="1" onclick "keypad.display.value+= '1'" onvclick="keypad.display.value+='1'"></td>
+				<td><input type=button value="2" onvclick="keypad.display.value+='2'"></td>
 				<td><input type=button value="3" onvclick="keypad.display.value+='2'"></td>
 			</tr>
 			<tr>
@@ -292,12 +290,31 @@
 				<td><input type=button value="8" onvclick="keypad.display.value+='7'"></td>
 				<td><input type=button value="9" onvclick="keypad.display.value+='8'"></td>
 			</tr>
-</table>
+		</table>
+	</form>
+
+	<form>
+    <fieldset data-role="controlgroup" id="relation_input" data-type="horizontal">
+        <legend><h1>How are you related?</h1></legend>
+        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="off">
+        <label for="radio-choice-h-2a">Son</label>
+        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="off">
+        <label for="radio-choice-h-2b">Daughter</label>
+        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="other">
+        <label for="radio-choice-h-2c">Grandson</label>
+        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2d" value="other">
+        <label for="radio-choice-h-2d">Granddaughter</label>
+        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2e" value="other">
+        <label for="radio-choice-h-2e">Friend</label>
+        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2f" value="other">
+        <label for="radio-choice-h-2f">In-law</label>
+    </fieldset>
 </form>
 
 	<div>
 		<a data-role="button" href="#home"><b>Add!</b></a>
 	</div>
+</div>
 </div>
 
 </body>

@@ -28,7 +28,61 @@ function popupAddContact() {
 	addContact (name, photo_src, relation, phone_num, email, 1);
 }
 
-function rerenderPopup(name, relation, photo_src, phone_num, email)
+
+/* helper function to stringify any passed in numbers/string numbers
+	PLEASE USE THIS TO FORMAT ANY STRING PHONE NUMBERS FOR CONSISTENCY */
+function formatPhoneNumber (num) {
+	var formatted_num = "";
+	// if already a string, clean out any non-numbers for more standardized formatting
+	if (typeof(num) != "number") {
+		num = stringToNum(num);
+	}
+	// make a pure number into a string version, so one process for formatting
+	else {
+		num = num.toString();
+	}
+
+	// format num as (xxx) xxx - xxxx
+	if (num.length == 10) {
+		formatted_num = '(' + num.substring(0,3) + ') ' + num.substring(3,6) + ' - ' + num.substring(6,10)
+	}
+	// US country code included 
+	else if (num.length == 11 && num[0]=="1") {
+		formatted_num = num[0] + ' (' + num.substring(1,4) + ') ' + num.substring(4,7) + ' - ' + num.substring(7,11)
+	}
+	// format as +#..# - ### - ### - ####
+	else {
+		// handle varying country code lengths, zero-indexed
+		var end_index = ((num.length - 4) % 3);
+		if (end_index == 0) {
+			end_index += 3;
+		}
+		var start_index = 0;
+		formatted_num += "+"
+		while (start_index < num.length - 4) {
+			formatted_num += num.substring(start_index, end_index) + ' - ';
+			start_index = end_index;
+			end_index += 3;
+		}
+		formatted_num += num.substring(start_index, num.length);
+	}
+	return formatted_num;
+
+}
+
+
+/* function that will change the fields of the contact popup*/
+function renderPopupRequest (name, relation, photo_src, phone_num, email) {
+	$("#popup_name").html(name);
+	$("#popup_relation").html(relation);
+	$("#popup_photo").html(photo_src);
+	//$("#popup_number").html(phone_num);
+	// need to parse phone number first
+	var email_str = "Email: " + email
+	$("$#popup_email").html(email_str);
+}
+
+
 
 /* turns number of format (###) ### - #### to 
 	#########, code from StackOverflow (see acknowledgements) */

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SIMPL</title>
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="calling%20and%20video%20screen.js"></script>
+        
+        <style>
+            img.resized {
+                max-height: 90%;
+                max-width: 90%;
+            }
+        </style>
+    </head>
+
+    <body>
+               <div data-role="page" id="dialingPanel">
+            <!--below is the dialing panel page-->
+
+            
+            <header data-role="header">
+                
+                <h1>Dial a Phone Number</h1>
+                <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+                <a href="#" data-icon="mail">InBox</a>
+            
+            </header>
+ 
+            <article data-role="content">
+                
+                <center><input style="background: white; color: black;" type="text" readonly="readonly" id="myInput"/>
+                    <table class="ui-bar-a" id="n_keypad" style="display: none; -khtml-user-select: none;">
+                        <tr>
+                           <td><a data-role="button" data-theme="b" class="numero">7</a></td>
+                           <td><a data-role="button" data-theme="b" class="numero">8</a></td>
+                           <td><a data-role="button" data-theme="b" class="numero">9</a></td>
+                           <td><a data-role="button" data-theme="e" class="del">Del</a></td>
+                        </tr>
+                        <tr>
+                           <td><a data-role="button" data-theme="b" class="numero">4</a></td>
+                           <td><a data-role="button" data-theme="b" class="numero">5</a></td>
+                           <td><a data-role="button" data-theme="b" class="numero">6</a></td>
+                           <td><a data-role="button" data-theme="e" class="clear">Clear</a></td>
+                        </tr>
+                        <tr>
+                           <td><a data-role="button" data-theme="b" class="numero">1</a></td>
+                           <td><a data-role="button" data-theme="b" class="numero">2</a></td>
+                           <td><a data-role="button" data-theme="b" class="numero">3</a></td>
+                           <td><a data-role="button" data-theme="e">Save</a></td>
+                        </tr>
+                        <tr>
+                           <td><a data-role="button" data-theme="e" class="neg">-</a></td>
+                           <td><a data-role="button" data-theme="b" class="zero">0</a></td>
+                           <td><a data-role="button" data-theme="e" class="pos">+</a></td>
+                           <td><a data-role="button" data-theme="e" class="done">Done</a></td>
+                        </tr>
+                    </table>
+                </center>
+
+        
+ 
+            </article>
+            <a id="Call" href="#inAppCalling" data-role="button" data-theme="b"><h2>Call this Number</h2></a>
+        </div>
+            <!--above is the dialing panel page-->
+
+        <div data-role="page" id="inAppCalling">
+            <!--below is the in-app calling page-->
+
+            
+            <header data-role="header">
+                
+                <h1>Calling</h1>
+                <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+                <a href="#" data-icon="mail">InBox</a>
+            
+            </header>
+ 
+            <article data-role="content">
+                
+                <div class="timer" align="center">
+                    <p><span id="mins" style="font-weight:900">0</span> <font face="verdana">minute(s)</font>
+                        <span id="secs" style="font-weight:900">0</span> <font face="verdana">second(s)</font></p>
+                </div>
+                
+                <center><img src="images/01.jpg" class="resized" align="middle"></center>
+ 
+            </article>
+            <center><a id="switchToVideoChat" href="#inAppVideoChatting" data-role="button" data-theme="a" data-inline="true"><h2>Switch To Video Call</h2></a>
+                <a id="endCalling" href="#dialingPanel" data-role="button" data-theme="b" data-inline="true"><h2>End Calling</h2></a></center>
+        </div>
+            
+            <!--above is the in-app calling page-->
+            
+        <div data-role="page" id="inAppVideoChatting">
+            <!--below is the in-app video chatting page-->
+    
+            
+            <header data-role="header">
+                
+                <h1>Video Chatting</h1>
+                <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+                <a href="#" data-icon="mail">InBox</a>
+            
+            </header>
+ 
+            <article data-role="content">
+                
+                <div class="timer" align="center">
+                    <p><span id="mins1" style="font-weight:900">0</span> <font face="verdana">minute(s)</font>
+                        <span id="secs1" style="font-weight:900">0</span> <font face="verdana">second(s)</font></p>
+                </div>
+                            <br><br><br><br><br><br><br>
+
+                <center><img src="images/3.gif" class="resized" align="middle"></center>
+ 
+            </article>
+            
+            <br><br><br><br><br>
+            <center><a id="switchToCalling" href="#inAppCalling" data-role="button" data-theme="a" data-inline="true"><h2>Switch To Calling</h2></a>
+                <a id="endCalling" href="#dialingPanel" data-role="button" data-theme="b" data-inline="true"><h2>End Calling</h2></a></center>
+        </div>
+            <!--above is the in-app video chatting page-->
+
+                  
+</body>
+</html>

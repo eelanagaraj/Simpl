@@ -5,6 +5,7 @@
  
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -82,7 +83,7 @@
 	<div data-role="content">
 		<div>
 			<article data-role="content">
-				<ul data-role="listview" data-theme="c" id="contact_list">		  
+				<ul data-role="listview" data-theme="c" id="contact_list">        
 				</ul> 
 			</article>
 		</div>
@@ -95,9 +96,9 @@
 	</div> 
 	<div id="new_contact_info">
 		<ul>
-			<h1><p id="popup_name">Name</p></h1>
+			<h2><p id="popup_name">Name</p></h2>
 			<h3><p id="popup_relation">Relationship</p></h3>
-			<p> <img src="images/man.png" alt="profile picture" id="popup_photo" style="width: 80%;"></p>
+			<p> <img src="images/man.png" alt="profile picture" id="popup_photo" style="width: 70%;"></p>
 			<h4><p id="popup_number">Phone Number: (111) 111- 1111</p></h4>
 			<h4><p id="popup_email">Email: johndoe@hotmail.com</p></h4>
 		</ul>
@@ -127,7 +128,7 @@
 				<li><img src="images/man.png" alt="profile picture"> 
 					<div data-role="header"> Unread </div>
 					<div> From: Joe Smith </div>
-					<div> Date: March 30, 2016 </div>					
+					<div> Date: March 30, 2016 </div>                   
 					<div> <a href="#view_message2" data-role="button"> View Message </a></div>
 				</li>
 					<li><img src="images/man.png" alt="profile picture"> 
@@ -260,59 +261,93 @@
 
 <div data-role="page" id="add_contact">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
-		<a href="#inbox" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
+		<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
 		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div>
 
+	<h1><b>Add Contact</b></h1>
+
+
+    <label for="basic"><h1>Enter Name:</h1></label>
+    <input type="text" class="form-control" placeholder="Type Name" id= "new_name_field" name="new_name_field"
+                required
+                data-fv-notempty-message="Please enter name" />
 	<div>
-	<label for="basic"><h1>Enter Name:</h1></label>
-	<input type="text" name="name" id="new_name_field" placeholder="Type Name" />
+		<a href="#add_contact_2" data-role="button" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-input-btn ui-shadow" type="button" ><h1>Next</h1></a>
+	</div> 
+</div>
+
+<div data-role="page" id="add_contact_2">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
+		<a href="#add_contact" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
+		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
+	</div>
+
 	<label for="basic"><h1>Enter Number:</h1></label>
-	<input type="tel" id="number_field" value=""  />
-	<form name="keypad">
-		<table border=2>
+	<form id="numberpad" name="keypad">
+		<table border=1>
 			<tr>
-				<td colspan=4><input type=text name="display"></td>
+				<td colspan=4><input id="add_contact_number" type=text name="display"></td>
 			</tr>
 			<tr>
-				<td><input type=button value="1" onclick "keypad.display.value+= '1'" onvclick="keypad.display.value+='1'"></td>
-				<td><input type=button value="2" onvclick="keypad.display.value+='2'"></td>
-				<td><input type=button value="3" onvclick="keypad.display.value+='2'"></td>
+				<td><input type=button value="1" onclick="keypad.display.value+='1'" ontap="keypad.display.value+='1'"></td>
+				<td><input type=button value="2" onclick="keypad.display.value+='2'" ontap="keypad.display.value+='2'"></td>
+				<td><input type=button value="3" onclick="keypad.display.value+='3'" ontap="keypad.display.value+='3'"></td>
 			</tr>
 			<tr>
-				<td><input type=button value="4" onvclick="keypad.display.value+='3'"></td>
-				<td><input type=button value="5" onvclick="keypad.display.value+='4'"></td>
-				<td><input type=button value="6" onvclick="keypad.display.value+='5'"></td>
+				<td><input type=button value="4" onclick="keypad.display.value+='4'" ontap="keypad.display.value+='4'"></td>
+				<td><input type=button value="5" onclick="keypad.display.value+='5'" ontap="keypad.display.value+='5'"></td>
+				<td><input type=button value="6" onclick="keypad.display.value+='6'" ontap="keypad.display.value+='6'"></td>
 			</tr>
 			<tr>
-				<td><input type=button value="7" onvclick="keypad.display.value+='6'"></td>
-				<td><input type=button value="8" onvclick="keypad.display.value+='7'"></td>
-				<td><input type=button value="9" onvclick="keypad.display.value+='8'"></td>
+				<td><input type=button value="7" onclick="keypad.display.value+='7'" ontap="keypad.display.value+='7'"></td>
+				<td><input type=button value="8" onclick="keypad.display.value+='8'" ontap="keypad.display.value+='8'"></td>
+				<td><input type=button value="9" onclick="keypad.display.value+='9'" ontap="keypad.display.value+='9'"></td>
+			</tr>
+			<tr>
+				<td><a input type=button onclick="keypad.display.value += 'TODO FUNCTION'" class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-input-btn ui-shadow" type="button"><h1></h1></a></td>
+				<td><input type=button value="0" onclick="keypad.display.value+='0'" ontap="keypad.display.value+='3'"  >      </td>
+				<td><a class="ui-btn ui-icon-check ui-btn-icon-center ui-input-btn ui-shadow" type="button"><h1></h1></a></td>
 			</tr>
 		</table>
 	</form>
 
-	<form>
-    <fieldset data-role="controlgroup" id="relation_input" data-type="horizontal">
-        <legend><h1>How are you related?</h1></legend>
-        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="off">
-        <label for="radio-choice-h-2a">Son</label>
-        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="off">
-        <label for="radio-choice-h-2b">Daughter</label>
-        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="other">
-        <label for="radio-choice-h-2c">Grandson</label>
-        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2d" value="other">
-        <label for="radio-choice-h-2d">Granddaughter</label>
-        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2e" value="other">
-        <label for="radio-choice-h-2e">Friend</label>
-        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2f" value="other">
-        <label for="radio-choice-h-2f">In-law</label>
-    </fieldset>
-</form>
-
 	<div>
-		<a data-role="button" href="#home"><b>Add!</b></a>
+		<a href="#add_contact_3" data-role="button" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-input-btn ui-shadow" type="button" ><h1>Next</h1></a>
+	</div> 
+</div>
+
+<div data-role="page" id="add_contact_3">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
+		<a href="#add_contact_2" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
+		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
+	</div>
+
+	<label for="basic"><h1>Enter Email:</h1></label>
+	<input type="text" name="name" id="new_email_field" placeholder="Type Email" />	
+
+	<form>
+		<fieldset data-role="controlgroup" id="relation_input" data-type="horizontal">
+			<legend><h1>How are you related?</h1></legend>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="Son">
+			<label for="radio-choice-h-2a">Son</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="Daughter">
+			<label for="radio-choice-h-2b">Daughter</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="Grandson">
+			<label for="radio-choice-h-2c">Grandson</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2d" value="Granddaughter">
+			<label for="radio-choice-h-2d">Granddaughter</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2e" value="Friend">
+			<label for="radio-choice-h-2e">Friend</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2f" value="In-law">
+			<label for="radio-choice-h-2f">In-law</label>
+		</fieldset>
+	</form>
+	<div>
+		<a href="#home" data-role="button" onclick="userAddContact()"><b>Add!</b></a>
 	</div>
 </div>
 </div>

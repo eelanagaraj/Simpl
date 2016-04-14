@@ -17,6 +17,7 @@ function addContact (name, photo_file_path, relation, phone_num, email_addr, dis
 	$("body").append(zoomhtml);
 }
 
+
 /* adding contacts for comfort setting 1 */
 function popupAddContact() {
 	// parse all info from the pop-up fields
@@ -26,6 +27,13 @@ function popupAddContact() {
 	var phone_num = stringToNum($("#popup_number").text())
 	var email = $("#popup_email").text().split(" ")[1]
 	addContact (name, photo_src, relation, phone_num, email, 1);
+}
+
+
+/* turns number of format (###) ### - #### to 
+	#########, code from StackOverflow (see acknowledgements) */
+function stringToNum (stuff){
+	return (stuff.replace(/\D/g,''));
 }
 
 
@@ -67,7 +75,6 @@ function formatPhoneNumber (num) {
 		formatted_num += num.substring(start_index, num.length);
 	}
 	return formatted_num;
-
 }
 
 
@@ -76,27 +83,35 @@ function renderPopupRequest (name, relation, photo_src, phone_num, email) {
 	$("#popup_name").html(name);
 	$("#popup_relation").html(relation);
 	$("#popup_photo").html(photo_src);
-	//$("#popup_number").html(phone_num);
-	// need to parse phone number first
-	var email_str = "Email: " + email
-	$("$#popup_email").html(email_str);
-}
-
-
-
-/* turns number of format (###) ### - #### to 
-	#########, code from StackOverflow (see acknowledgements) */
-function stringToNum (stuff){
-	return (stuff.replace(/\D/g,''));
+	var phone_str = "Phone: " + formatPhoneNumber(phone_num);
+	$("#popup_number").html(phone_str);
+	var email_str = "Email: " + email;
+	$("#popup_email").html(email_str);
 }
 
 
 /* for comfort setting 2 */
 function userAddContact () {
 	var name = $("#new_name_field").val();
-	// relation = --> figure out how to get the radio button form input
-	var default_pic = "woman.png"
-	//addContact(name, default_pic, relation, phone_num, email_addr, display);
+	var phone_num = formatPhoneNumber($("#add_contact_number").val());
+	var email_addr = $("#new_email_field");
+	// handle no relation being selected
+	var relation = $('input[name=radio-choice-h-2]:checked').val()
+	if (!relation) {
+		relation = "";
+	}
+	else {
+		$('input[name=radio-choice-h-2]').removeAttr('checked');
+	}
+	var default_pic = "images/woman.png"
+
+	addContact(name, default_pic, relation, phone_num, email_addr, 1);
+	// reset all fields to blank
+	$("#new_name_field").val("");
+	$("#add_contact_number").val("");
+	$("#new_email_field").val("");  
+	
+	
 }
 
 
@@ -128,10 +143,12 @@ function loadContacts () {
 	return stuff ? stuff : {contact_info:[]}
 }
 
+
 /* simple helper that returns a contact given id_number */
 function getContact (id_num) {
 	return contacts.contact_info[id_num];
 }
+
 
 /* helper function that returns the html string of the header */
 function getStringHeader () {
@@ -153,7 +170,7 @@ function getContactListHTML (id) {
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
 	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
 	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button"> View Contact </a></div>' 
+	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button">View</a></div>' 
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;

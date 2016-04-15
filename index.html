@@ -314,26 +314,31 @@
 	</div>
 </div>
 
+	
 <div data-role="page" id="call">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
 		<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
 		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div>
+
 	<article data-role="content">
-		<h2 id="who_calling">Calling </h2>
+		<h2 class="who_calling">Calling </h2>
 		<div class="timer" align="center">
-			<p><span id="mins" style="font-weight:900">0</span> <font face="verdana">minute(s)</font>
-				<span id="secs" style="font-weight:900">0</span> <font face="verdana">second(s)</font></p>
+			<p><span id="c_mins" style="font-weight:900">0</span> <font face="verdana">minute(s)</font>
+				<span id="c_secs" style="font-weight:900">0</span> <font face="verdana">second(s)</font></p>
 		</div>
-		<center><img src="images/man.png" style="width: 80%" align="middle"></center>
+		<center class="call_image"><img src="images/man.png" style="width: 80%" align="middle"></center>
 	</article>
-
-	<center><a id="switchToVideoChat" href="#video" data-role="button" data-theme="a" data-inline="true"><h2>Switch To Video Call</h2></a>
-		<a id="endCall" href="#zoomcontact0" data-role="button" data-theme="b" data-inline="true"><h2>End Calling</h2></a></center>
-</div>
 	
-
+	<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a class="endCall" href="#zoomcontact1" data-theme="b"><h1>End Call</h1></a></li>
+			</ul>
+		</nav>
+	</footer>   
+</div>
 
 <div data-role="page" id="video">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
@@ -343,20 +348,20 @@
 	</div>
 
 	<article data-role="content">
-		<h2 id="who_video">Calling </h2>
+		<h2 class="who_calling">Calling </h2>
 		<div class="timer" align="center">
 			<p><span id="mins1" style="font-weight:900">0</span> <font face="verdana">minute(s)</font>
 				<span id="secs1" style="font-weight:900">0</span> <font face="verdana">second(s)</font></p>
 		</div>
 
-		<center id="video_image"><img src="images/03.jpg" style="width: 80%" align="middle"></center>
+		<center class="call_image"><img src="images/03.jpg" style="width: 80%" align="middle"></center>
 
 	</article>
 	
 	<footer data-role="footer" data-position="fixed">
 		<nav data-role="navbar">
 			<ul>
-				<li><a id="endCalling" href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
+				<li><a class="endCall" href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
 			</ul>
 		</nav>
 	</footer>   

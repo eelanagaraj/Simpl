@@ -217,10 +217,10 @@ function updateCallPages (id) {
 	var html = '<img src="' + contacts.contact_info[id].photo_file_path
 	html += '" style="width: 80%" align="middle">'
 	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
-	$("#who_video").html(calling_label);
-	$("#video_image").html(html);
-	$("#endCalling").attr("href",zoompage);
-
+	$(".who_calling").html(calling_label);
+	$(".call_image").html(html);
+	$(".endCall").attr("href",zoompage);
+	// update message linking pages
 }
 
 
@@ -259,6 +259,26 @@ function callClock1() {
 	}, 1000);
 }
 
+
+function callClockVoice () {
+	var secs1 = 0;
+	var mins1 = 0;
+	document.getElementById("c_secs").innerText = secs1;
+	document.getElementById("c_mins").innerText = mins1;
+	if (builtInClock1) {
+		clearInterval(builtInClock1);
+	}
+	builtInClock1 = setInterval(function() {
+		secs1 ++;
+		modsecs = secs1 % 60;
+		document.getElementById("c_secs").innerText = modsecs;
+		if (! (modsecs)) {
+			mins1++;
+			document.getElementById("c_mins").innerText = mins1;
+		}
+	}, 1000);
+}
+
 /* helper function that creates zoom pages for a contact id=i*/
 function getZoomPageHTML(id) {
 	var zoomhtml = "";
@@ -268,8 +288,9 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<div class="zoom_heading ui-title" data-role="header"><h3>' + contacts.contact_info[id].name + '</h3></div>'
 	zoomhtml += '<div><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 80%;"></div>'
 	zoomhtml += '<ui data-role="listview">'
-	zoomhtml += '<li><a href="tel:' + Number(stringToNum(contacts.contact_info[id].phone_num))
-	zoomhtml += '" data-role="button" rel="external" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
+	//zoomhtml += '<li><a href="tel:' + Number(stringToNum(contacts.contact_info[id].phone_num))
+	//zoomhtml += '" data-role="button" rel="external" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
+	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 //	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
 	zoomhtml += '<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'
@@ -325,6 +346,5 @@ $(function() {
 	//addContact("Homer Simpson", "images/02.jpg", "Son", 5555555555, "hsimps@aol.com", 0);
 	//addContact("Lisa Simpson", "images/03.jpg", "Granddaughter", 5555555555, "lsimps@aol.com", 0);
 	//addContact("Marge Simpson", "images/04.jpg", "Daugher-in-law", 5555555555, "msimps@aol.com", 0);
-	console.log("ahh yes");
 	initializeSimpl();
 });

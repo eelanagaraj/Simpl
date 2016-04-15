@@ -206,6 +206,13 @@ function addMessage (sent, whom, text) {
 		messages.received.push({id: id_num, date_time: now, from: whom, content: text});
 	}
 }
+/* should happen on click of send button*/
+
+function textMessage(id) {
+	addMessage(1, id, $("#id").val());
+	saveMessages();
+	
+}
 //NOTE : to get all messages chronologically, just go in order of incr id num
 // getting all messages by person (thread) would require also adding to a separate
 // database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!

@@ -100,7 +100,7 @@ function userAddContact () {
 	if (!relation) {
 		relation = "";
 	}
-	var default_pic = "images/woman.png"
+	var default_pic = "images/01.jpg"
 
 	addContact(name, default_pic, relation, phone_num, email_addr, 1);
 }
@@ -153,9 +153,9 @@ function getContact (id_num) {
 /* helper function that returns the html string of the header */
 function getStringHeader () {
 	var html = ""
-	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">'
+	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">'
 	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
-	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>'
+	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
 	html += '<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>'
 	html += '</div>'
 	return html

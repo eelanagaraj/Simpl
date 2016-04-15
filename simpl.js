@@ -211,6 +211,7 @@ function addMessage (sent, whom, text) {
 function textMessage(id) {
 	addMessage(1, id, $("#id").val());
 	saveMessages();
+	clearMessageFields();
 	
 }
 //NOTE : to get all messages chronologically, just go in order of incr id num

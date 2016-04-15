@@ -211,21 +211,50 @@ function addMessage (sent, whom, text) {
 // database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!
 
 
+function updateCallPages (id) {
+	var calling_label = "Calling " + contacts.contact_info[id].name;
+	$("#who_video").html(calling_label);
+	// call page??
+	var html = '<img src="' + contacts.contact_info[id].photo_file_path
+	html += '" style="width: 80%" align="middle">'
+	$("#video_image").html(html);
+}
+
+
 /* helper function that adds a contact to the main display list*/
 function getContactListHTML (id) {
 	var html = "";
 	html += '<li class="ui-li-has-thumb ui-first-child">'
-	html += '<a href="#zoomcontact' + id+ '">'
+	html += '<a href="#zoomcontact' + id +  '" onclick="updateCallPages(' + id + ')">'
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
 	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
 	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button">View</a></div>' 
+	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button" onClick="updateCallPages(' + id + ')">View</a></div>' 
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
 
 }
 
+
+function callClock1() {
+	var secs1 = 0;
+	var mins1 = 0;
+	document.getElementById("secs1").innerText = secs1;
+	document.getElementById("mins1").innerText = mins1;
+	if (builtInClock1) {
+		clearInterval(builtInClock1);
+	}
+	builtInClock1 = setInterval(function() {
+		secs1 ++;
+		modsecs = secs1 % 60;
+		document.getElementById("secs1").innerText = modsecs;
+		if (! (modsecs)) {
+			mins1++;
+			document.getElementById("mins1").innerText = mins1;
+		}
+	}, 1000);
+}
 
 /* helper function that creates zoom pages for a contact id=i*/
 function getZoomPageHTML(id) {
@@ -239,7 +268,7 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<li><a href="tel:' + Number(stringToNum(contacts.contact_info[id].phone_num))
 	zoomhtml += '" data-role="button" rel="external" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 //	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
-	zoomhtml += '<li><a href="#video" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
+	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
 	zoomhtml += '<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'
 	zoomhtml += '</ui></div></div>'
 	return zoomhtml;
@@ -288,6 +317,7 @@ function displayContactProfile () {
 
 $(function() {
 	contacts = loadContacts();
+	builtInClock1 = 0;
 	// for testing : 
 	//addContact("Homer Simpson", "images/02.jpg", "Son", 5555555555, "hsimps@aol.com", 0);
 	//addContact("Lisa Simpson", "images/03.jpg", "Granddaughter", 5555555555, "lsimps@aol.com", 0);

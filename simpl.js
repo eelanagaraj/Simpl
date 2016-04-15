@@ -113,6 +113,7 @@ function clearAddContactFields () {
 	$('input[name=radio-choice-h-2]').removeAttr('checked');
 }
 
+
 /* helper function to prevent spelling errors, ensure consistency??? */
 function getRelation (rel_code) {
 	var rels = ["Mother", "Father", "Daughter", "Son", "Granddaughter", "Grandson", "Cousin", "Friend"];
@@ -209,10 +210,17 @@ function addMessage (sent, whom, text) {
 /* should happen on click of send button*/
 
 function textMessage(id) {
-	addMessage(1, id, $("#id").val());
+	var words_n_stuff = $("#text_to_send").val()
+	addMessage(1, id, words_n_stuff);
+	$("#sent_text").val(words_n_stuff);
 	saveMessages();
-	
 }
+
+function clearMessageFields () {
+	$("#text_to_send").val("");
+	$("#sent_text").val("");
+}
+
 //NOTE : to get all messages chronologically, just go in order of incr id num
 // getting all messages by person (thread) would require also adding to a separate
 // database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!
@@ -225,12 +233,14 @@ function updateFunctionPages (id) {
 	html += '" style="width: 80%" align="middle">'
 	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
 	var message_html = '<h2>To: ' + contacts.contact_info[id].name + '</h2>'
+	var on_send = '<a href="#sent" onclick="textMessage(' + id +')" class="ui-btn">Send</a>'
 	$("#messageto").html(message_html);
 	$(".who_calling").html(calling_label);
 	$(".call_image").html(html);
 	$(".endCall").attr("href",zoompage);
 	$("#backto").attr("href", zoompage);
-
+	$("#send_btn").html(on_send);
+	$("#backto").attr("href", zoompage);
 	// update message linking pages
 }
 
@@ -304,7 +314,7 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 //	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
-	zoomhtml += '<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'
+	zoomhtml += '<li><a href="#message" onclick="clearMessageFields()" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'
 	zoomhtml += '</ui></div></div>'
 	return zoomhtml;
 	//$("body").append(zoomhtml);

@@ -100,20 +100,18 @@ function userAddContact () {
 	if (!relation) {
 		relation = "";
 	}
-	else {
-		$('input[name=radio-choice-h-2]').removeAttr('checked');
-	}
 	var default_pic = "images/woman.png"
 
 	addContact(name, default_pic, relation, phone_num, email_addr, 1);
-	// reset all fields to blank
+}
+
+/* reset adding contact text fields */
+function clearAddContactFields () {
 	$("#new_name_field").val("");
 	$("#add_contact_number").val("");
 	$("#new_email_field").val("");  
-	
-	
+	$('input[name=radio-choice-h-2]').removeAttr('checked');
 }
-
 
 /* helper function to prevent spelling errors, ensure consistency??? */
 function getRelation (rel_code) {
@@ -125,7 +123,7 @@ function getRelation (rel_code) {
 /* function that saves contact list to html5 local storage*/
 function saveContacts () {
 	if (typeof(Storage) !== "undefined") {
-		// store the most contacts state
+		// store the most recent contacts state
 		localStorage.setItem("contacts", JSON.stringify(contacts));
 	}
 	else {
@@ -133,6 +131,8 @@ function saveContacts () {
 		document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
 	}
 }
+
+
 
 
 /* loads contacts stored in html5 local storage if it exists
@@ -160,6 +160,55 @@ function getStringHeader () {
 	html += '</div>'
 	return html
 }
+
+
+/* ~~~~MESSAGE SAVING FUNCTIONALITY~~~~ */
+
+
+/* loads all sent and received messages stored in local storage
+	if it exists, or if it does not exist, creates new message threads */
+function loadMessages () {
+	var stuff = JSON.parse(localStorage.getItem("messages"));
+	// make sure not null, and if so create new threads
+	return stuff ? stuff : {sent: [], received: []}
+}
+
+
+/* helper function for saving messages */
+function saveMessages () {
+	if (typeof(Storage) !== "undefined") {
+		// store messages database
+		localStorage.setItem("messages", JSON.stringify(messages));
+	}
+	else {
+		// not supported
+		document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+	}
+}
+
+/* helper function for calculator delete button,
+	returns string with last character truncated */
+function stringOneShorter (str) {
+	return (str.length) ? (str.slice(0,-1)) : str;
+}
+
+/* helper functionality for saving a string
+	to messages.sent (1) or messages.received (0) */
+function addMessage (sent, whom, text) {
+	var id_num;
+	var now = new Date ();
+	if (sent) {
+		id_num = messages.sent.length;
+		messages.sent.push({id: id_num, date_time: now, to: whom, content: text});
+	}
+	else {
+		id_num = messages.received.length;
+		messages.received.push({id: id_num, date_time: now, from: whom, content: text});
+	}
+}
+//NOTE : to get all messages chronologically, just go in order of incr id num
+// getting all messages by person (thread) would require also adding to a separate
+// database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!
 
 
 /* helper function that adds a contact to the main display list*/
@@ -203,7 +252,7 @@ function initializeSimpl () {
 
 	// for testing only!! --> the buttons for popup and add new contact
 	html += '<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a></li>'
-	html += '<li><a href="#add_contact"> Add Contact (Setting 2) Test </a></li>'
+	html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact (Setting 2) Test </a></li>'
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {
 		html += getContactListHTML(i);

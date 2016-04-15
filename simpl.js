@@ -213,11 +213,14 @@ function addMessage (sent, whom, text) {
 
 function updateCallPages (id) {
 	var calling_label = "Calling " + contacts.contact_info[id].name;
-	$("#who_video").html(calling_label);
-	// call page??
+	var zoompage = "#zoomcontact" + id
 	var html = '<img src="' + contacts.contact_info[id].photo_file_path
 	html += '" style="width: 80%" align="middle">'
+	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
+	$("#who_video").html(calling_label);
 	$("#video_image").html(html);
+	$("#endCalling").attr("href",zoompage);
+
 }
 
 

@@ -192,45 +192,6 @@
 </div>
 
 
-<div data-role="page" id="call">
-			<header data-role="header">
-				<h1>Now Calling</h1>
-			</header>
-			
-			<img src="images/01.jpg" class="resized" />
-			
-			<footer data-role="footer" data-position="fixed">
-				<nav data-role="navbar">
-					<ul>
-						<li><a href="#zoomcontact1" data-theme="b"><h1>End Call</h1></a></li>
-					</ul>
-			
-					</nav>
-		
-				</footer> 
-			
-		
-		</div>
-		
-<div data-role="page" id="video">
-			<header data-role="header">
-				<h1>Now Connecting</h1>
-
-			</header>
-			
-			<img src="images/01.jpg" class="resized" />
-			
-			<footer data-role="footer" data-position="fixed">
-				<nav data-role="navbar">
-					<ul>
-						<li><a href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
-					</ul>
-			
-					</nav>
-		
-				</footer>   
-</div>
-
 
 <div data-role="page" id="message">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
@@ -369,9 +330,11 @@
 	</article>
 
 	<center><a id="switchToVideoChat" href="#video" data-role="button" data-theme="a" data-inline="true"><h2>Switch To Video Call</h2></a>
-		<a id="endCalling" href="#zoomcontact0" data-role="button" data-theme="b" data-inline="true"><h2>End Calling</h2></a></center>
+		<a id="endCall" href="#zoomcontact0" data-role="button" data-theme="b" data-inline="true"><h2>End Calling</h2></a></center>
 </div>
 	
+
+
 <div data-role="page" id="video">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
 		<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
@@ -390,9 +353,16 @@
 
 	</article>
 	
-	<br><br><br><br><br>
-	<center><a id="switchToCalling" href="#call" data-role="button" data-theme="a" data-inline="true"><h2>Switch To Calling</h2></a>
-		<a id="endCalling" href="#home" data-role="button" data-theme="b" data-inline="true"><h2>End Calling</h2></a></center>
+	<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a id="endCalling" href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
+			</ul>
+		</nav>
+	</footer>   
 </div>
+
+
+
 </body>
 </html>

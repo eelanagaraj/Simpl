@@ -211,15 +211,19 @@ function addMessage (sent, whom, text) {
 // database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!
 
 
-function updateCallPages (id) {
+function updateFunctionPages (id) {
 	var calling_label = "Calling " + contacts.contact_info[id].name;
-	var zoompage = "#zoomcontact" + id
+	var zoompage = "#zoomcontact" + id;
 	var html = '<img src="' + contacts.contact_info[id].photo_file_path
 	html += '" style="width: 80%" align="middle">'
 	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
+	var message_html = '<h2>To: ' + contacts.contact_info[id].name + '</h2>'
+	$("#messageto").html(message_html);
 	$(".who_calling").html(calling_label);
 	$(".call_image").html(html);
 	$(".endCall").attr("href",zoompage);
+	$("#backto").attr("href", zoompage);
+
 	// update message linking pages
 }
 
@@ -228,11 +232,11 @@ function updateCallPages (id) {
 function getContactListHTML (id) {
 	var html = "";
 	html += '<li class="ui-li-has-thumb ui-first-child">'
-	html += '<a href="#zoomcontact' + id +  '" onclick="updateCallPages(' + id + ')">'
+	html += '<a href="#zoomcontact' + id +  '" onclick="updateFunctionPages(' + id + ')">'
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
 	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
 	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button" onClick="updateCallPages(' + id + ')">View</a></div>' 
+	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button" onClick="updateFunctionPages(' + id + ')">View</a></div>' 
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
@@ -300,6 +304,7 @@ function getZoomPageHTML(id) {
 }
 
 
+
 /* initializes Simpl contacts list and creates necessary zoom pages*/
 function initializeSimpl () {
 	var html = "";
@@ -340,7 +345,9 @@ function displayContactProfile () {
 }
 
 $(function() {
+	$.mobile.page.prototype.options.backBtnTheme = "a";
 	contacts = loadContacts();
+	messages = loadMessages();
 	builtInClock1 = 0;
 	// for testing : 
 	//addContact("Homer Simpson", "images/02.jpg", "Son", 5555555555, "hsimps@aol.com", 0);

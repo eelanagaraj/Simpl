@@ -1,6 +1,10 @@
 // include all the JS helper functionality, data storage, etc.
 
-// change fields if necessary ?? 
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~USER CONTACT FUNCTIONLITY ~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+ 
 // display = binary array containing settings of younger user (email vs. text, etc.)
 function addContact (name, photo_file_path, relation, phone_num, email_addr, display) {
 	var id_num = contacts.contact_info.length;
@@ -28,6 +32,8 @@ function popupAddContact() {
 	var email = $("#popup_email").text().split(" ")[1]
 	addContact (name, photo_src, relation, phone_num, email, 1);
 }
+
+// for web app --> create web_app page; have that page allow user to fill in fields, "FB verify" and then sends popup request which will show up 
 
 
 /* turns number of format (###) ### - #### to 
@@ -134,7 +140,6 @@ function saveContacts () {
 }
 
 
-
 /* loads contacts stored in html5 local storage if it exists
 	or if it does not exist, creates new contact list. */
 function loadContacts () {
@@ -150,6 +155,13 @@ function getContact (id_num) {
 }
 
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~REMOTE USER ADD CONTACT~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
 /* helper function that returns the html string of the header */
 function getStringHeader () {
 	var html = ""
@@ -161,9 +173,9 @@ function getStringHeader () {
 	return html
 }
 
-
-/* ~~~~MESSAGE SAVING FUNCTIONALITY~~~~ */
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~MESSAGE SAVING FUNCTIONALITY~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* loads all sent and received messages stored in local storage
 	if it exists, or if it does not exist, creates new message threads */
@@ -193,8 +205,7 @@ function stringOneShorter (str) {
 }
 
 
-/* helper functionality for saving a string
-	to messages.sent (1) or messages.received (0)
+/* helper functionality for saving a string to messages.sent (1) or messages.received (0)
 	mark received messages as not read initially 
 	~~whom field is an id number~~ */
 function addMessage (sent, whom, text) {
@@ -211,6 +222,24 @@ function addMessage (sent, whom, text) {
 }
 
 
+/* should happen on click of send button*/
+function textMessage(id) {
+	var words_n_stuff = $("#text_to_send").val()
+	addMessage(1, id, words_n_stuff);
+	$("#sent_text").val(words_n_stuff);
+	saveMessages();
+	clearMessageFields();
+}
+
+function clearMessageFields () {
+	$("#text_to_send").val("");
+	$("#sent_text").val("");
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~HTML PAGE RENDERING~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /*  dynamically displaying messages in the inbox; account for unread vs. read */
 function renderInbox() {
@@ -257,7 +286,7 @@ function viewMessage (message_id) {
 	renderInbox();
 }
 
-
+/* helper function for viewing a message that the user has sent */
 function viewSent (message_id) {
 	var id = messages.sent[message_id].to
 	var name = contacts.contact_info[id].to
@@ -269,7 +298,7 @@ function viewSent (message_id) {
 	$("#message_display").html(html)
 }
 
-
+/* renders the html for the list of sent messages */
 function renderSentMail () {
 	var html = ""
 	var id_to;
@@ -292,26 +321,11 @@ function renderSentMail () {
 	$("#sent_message_list").listview('refresh');
 }
 
-/* should happen on click of send button*/
-
-function textMessage(id) {
-	var words_n_stuff = $("#text_to_send").val()
-	addMessage(1, id, words_n_stuff);
-	$("#sent_text").val(words_n_stuff);
-	saveMessages();
-	clearMessageFields();
-}
-
-function clearMessageFields () {
-	$("#text_to_send").val("");
-	$("#sent_text").val("");
-}
-
 //NOTE : to get all messages chronologically, just go in order of incr id num
 // getting all messages by person (thread) would require also adding to a separate
 // database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!
 
-
+/* makes sure the functionality pages are properly linked from zoommed page */
 function updateFunctionPages (id) {
 	var calling_label = "Calling " + contacts.contact_info[id].name;
 	var zoompage = "#zoomcontact" + id;
@@ -387,7 +401,7 @@ function callClockVoice () {
 	}, 1000);
 }
 
-/* helper function that creates zoom pages for a contact id=i*/
+/* helper function that creates zoom pages for a given contact id */
 function getZoomPageHTML(id) {
 	var zoomhtml = "";
 	zoomhtml += '<div data-role="page" id="zoomcontact' + id + '">';
@@ -429,24 +443,6 @@ function initializeSimpl () {
 }
 
 
-/* DEFUNCT DO NOT USE, USE addZoomPage!!
-	if time: modify to render zoomed-in contact page at #zoomedcontact1 
-	to conserve resources, not write obscenely huge html files*/
-function displayContactProfile () {
-	console.log($(this).attr("data-index"));
-	id_num = $(this.attr("data-index"));
-	var html = ""
-	html += '<div class="zoom_heading ui-title" data-role="header"><b>'
-	html += contacts.contact_info[id_num].name + '</b></div>'
-	html += '<div><img src=' + contacts.contact_info[id_num].photo_file_path + ' alt="profile picture" style="width: 70%;"></div>'
-	html += '<ui data-role="listview" class= "ui-listview">'
-	html += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left">Call</a></li>'
-	html += '<li><a href="#video" class="ui-btn ui-icon-video ui-btn-icon-left">Video Call</a></li>'
-	html += '<li><a href="#message" class="ui-btn ui-icon-mail ui-btn-icon-left">Message</a></li></ui>'
-	$("#zoomed_info").html(html);
-		// change the html stored at that page any time a contact is clicked 
-		// link every contact to that same page though, but change info displayed at that location
-}
 
 $(function() {
 	$.mobile.page.prototype.options.backBtnTheme = "a";

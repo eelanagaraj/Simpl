@@ -84,18 +84,6 @@ function formatPhoneNumber (num) {
 }
 
 
-/* function that will change the fields of the contact popup*/
-function renderPopupRequest (name, relation, photo_src, phone_num, email) {
-	$("#popup_name").html(name);
-	$("#popup_relation").html(relation);
-	$("#popup_photo").html(photo_src);
-	var phone_str = "Phone: " + formatPhoneNumber(phone_num);
-	$("#popup_number").html(phone_str);
-	var email_str = "Email: " + email;
-	$("#popup_email").html(email_str);
-}
-
-
 /* for comfort setting 2 */
 function userAddContact () {
 	var name = $("#new_name_field").val();
@@ -159,19 +147,39 @@ function getContact (id_num) {
 /* ~~~~~~~~~~REMOTE USER ADD CONTACT~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-
-
-
-/* helper function that returns the html string of the header */
-function getStringHeader () {
-	var html = ""
-	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">'
-	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
-	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
-	html += '<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>'
-	html += '</div>'
-	return html
+/* function that will change the fields of the contact popup*/
+function renderPopupRequest (name, relation, photo_src, phone_num, email) {
+	$("#popup_name").html(name);
+	$("#popup_relation").html(relation);
+	$("#popup_photo").html(photo_src);
+	var phone_str = "Phone: " + formatPhoneNumber(phone_num);
+	$("#popup_number").html(phone_str);
+	var email_str = "Email: " + email;
+	$("#popup_email").html(email_str);
 }
+
+
+/* on submit, render the popup request, then clear the remote user form fields*/
+function sendRequest () {
+	var name = $("#input_name").val();
+	var phone_num = $("#input_phonenum").val();
+	var email_addr = $("#input_email").val();
+	var relation = $("#input_relation").val();
+	//note does not actually render image (would need backend)
+	var file_path = $("#input_photo_file").val();
+	renderPopupRequest (name, relation, file_path, phone_num, email_addr);
+}
+
+/* reset web interface fields */
+function clearWebInterfaceFields() {
+	$("#input_name").val("");
+	$("#input_phonenum").val("");
+	$("#input_email").val("");
+	$("#input_relation").val("");
+	$("#input_photo_file").val("");
+}
+
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~MESSAGE SAVING FUNCTIONALITY~~~~~~~~ */
@@ -237,9 +245,36 @@ function clearMessageFields () {
 }
 
 
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~FORM VALIDATION~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+//TODO
+
+// WEB INTERFACE VALIDATION
+
+// SUPER USER VALIDATION 
+
+
+// SETTING 2 ADD CONTACT VALIDATION
+
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~HTML PAGE RENDERING~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+/* helper function that returns the html string of the header */
+function getStringHeader () {
+	var html = ""
+	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">'
+	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
+	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
+	html += '<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>'
+	html += '</div>'
+	return html
+}
 
 /*  dynamically displaying messages in the inbox; account for unread vs. read */
 function renderInbox() {
@@ -431,6 +466,7 @@ function initializeSimpl () {
 	// for testing only!! --> the buttons for popup and add new contact
 	html += '<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a></li>'
 	html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact (Setting 2) Test </a></li>'
+	html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {
 		html += getContactListHTML(i);

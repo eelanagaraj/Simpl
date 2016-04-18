@@ -182,14 +182,14 @@
 	</div> 
 	<div>
 		<label id="messageto"><h2>To: </h2></label>
-	 	<h2 for="basic">Your message:</h2>
+		<h2 for="basic">Your message:</h2>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
 			<input type="text" name="name" id="text_to_send" value="" placeholder=" Type Text Here">
 		</div>
 	</div>
 	<div id="send_btn">
-  		<a href="#sent" class="ui-btn">Send</a>
-  	</div>
+		<a href="#sent" class="ui-btn">Send</a>
+	</div>
  </div>
 
 <div data-role="page" id="sent">
@@ -351,6 +351,68 @@
 		</nav>
 	</footer>   
 </div>
+
+
+<div data-role="page" id="web_user_interface">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-rel="back">
+		<hi class = "ui-title ui-bar-a" tabindex = "0" data-role="button"role="heading" aria-level = "1">SIMPL </h1>
+	</div>
+
+	<div data-role="content">
+
+	<!-- <form id="web_user_inputs" onsubmit="WRITEDISFUNC()" > 
+	TODO: split into two screens: must validate who you are requesting first, then move on to entering your info; or other way around? -->
+
+
+	<form id="web_user_inputs" onsubmit="sendRequest()" ><center><h2>Send Contact Request</h2></center>
+		<h4><b>Your Information:</b></h4>
+		<fieldset class="form-group">
+			<label for="input_name">Name</label>
+			<input type="text" class="form-control" id="input_name" placeholder="Joe Smith">
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="input_phonenum">Phone Number</label>
+			<input type="tel" class="form-control" id="input_phonenum" placeholder="123 - 456 - 789">
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="input_email">Email address</label>
+			<input type="email" class="form-control" id="input_email" placeholder="e.g. joesmith@gmail.com">
+ 		</fieldset>
+  		<fieldset class="form-group">
+  			<label for="input_photo_file">Photo Upload</label>
+  			<input type="file" class="form-control-file" id="input_photo_file">
+  			<small class="text-muted">Upload a picture of yourself! For best results, select a square picture.</small>
+  		</fieldset>
+		<fieldset class="form-group">
+			<label for="input_relation">What is your relationship to requestee?</label>
+				<select class="form-control" id="input_relation">
+					<option> </option>
+					<option>Son</option>
+					<option>Daughter</option>
+					<option>Grandson</option>
+					<option>Granddaughter</option>
+					<option>Great-grandson</option>
+					<option>Great-granddaughter</option>
+					<option>Son-in-law</option>
+					<option>Daughter-in-law<o/option>
+					<option>Friend</option>
+				</select>
+    	</fieldset>
+  		<h4><b>Send Request To:</b></h4>	
+  		<fieldset class="form-group">
+			<label for="input_simpl_username">Simpl User's Name</label>
+			<input type="text" class="form-control" id="input_simpl_username" placeholder="Bob Smith">
+		</fieldset>	
+		<fieldset class="form-group">
+			<label for="input_simpl_userphone">Simpl User's Phone Number</label>
+			<input type="tel" class="form-control" id="input_simpl_userphone" placeholder="123 - 456 - 789">
+			<small class="text-muted">Note: Simpl user's name and phone number must match our system for the request to go through, for our users' safety.</small>
+		</fieldset>
+  		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+</div>
+
 
 </body>
 </html>

@@ -116,36 +116,40 @@
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div id="message_container" class="content">
+		<div data-role="navbar">
+			<ul>
+				<li><a class="ui-btn-active ui-state-persist ui-shadow">Received</a></li>
+				<li><a href="#inbox_received" onclick="renderSentMail()">Sent</a></li>
+			</ul>
+		</div>
 		<div>
 			<ul id="message_list" data-role="listview" data-filter="true" data-filter-placeholder="Search Messages">           
-		<!--		<li><img src="images/01.jpg" alt="profile picture"> 
-					<div data-role="header"> Unread </div>
-					<div> From: Sally Smith </div>
-					<div> Date: April 4, 2016 </div>
-					<div> <a href="#view_message" data-role="button"> View Message </a></div>
-				</li>
-				<li><img src="images/man.png" alt="profile picture"> 
-					<div data-role="header"> Unread </div>
-					<div> From: Joe Smith </div>
-					<div> Date: March 30, 2016 </div>                   
-					<div> <a href="#view_message2" data-role="button"> View Message </a></div>
-				</li>
-					<li><img src="images/man.png" alt="profile picture"> 
-					<div data-role="header"> Read </div>
-					<div> Date: April 2, 2016 </div>
-					<div> From: Joe Smith </div>
-					<div> <a href="#view_message2" data-role="button"> View Message </a></div>
-				</li>
-					<li><img src="images/woman2.png" alt="profile picture"> 
-					<div data-role="header"> Read </div>
-					<div> From: Jane Smith </div>
-					<div> Date: April 1, 2016 </div>
-					<div> <a href="#view_message" data-role="button"> View Message </a></div>
-				</li> -->
 			</ul>
 		</div>
 	</div>
 </div>
+
+
+<div data-role="page" id="inbox_received">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
+	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
+		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
+	</div> 
+	<div id="sent_message_container" class="content">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#inbox">Received</a></li>
+				<li><a class="ui-btn-active ui-state-persist ui-shadow">Sent</a></li>
+			</ul>
+		</div>
+		<div>
+			<ul id="sent_message_list" data-role="listview" data-filter="true" data-filter-placeholder="Search Messages">           
+			</ul>
+		</div>
+	</div>
+</div>
+
 
 
 <div data-role="page" id="view_message">
@@ -168,28 +172,6 @@
 		<div> <a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button">Reply</a></div>
 	</div>
 </div>
-
-<div data-role="page" id="view_message2">
-	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
-	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
-		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
-	</div> 
-	<div data-role="content">
-		<div>
-			<h2> From: Sally Smith </h2>
-			<h2> Date: March 3, 2016 </h2>
-		</div>
-		<div class="big-font-text">
-			<p> Dear grandma, </p>
-			<p> Miss you lots! Please call me when you get the chance. I have done so many cool things and I really can't wait to tell you all about them! I have seriously been doing just the coolest things ever. So many words I love writing words so much, really they are just fascinating. So many words I love writing words so much, really they are just fascinating. So many words I love writing words so much, really they are just fascinating. How are you? How is everything going? I hope to see you very soon! </p>
-			<p> Sincerely, </p>
-			<p> Joe Smith </p>
-		</div>
-		<div> <a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button">Reply</a></div>
-	</div>
-</div>
-
 
 
 <div data-role="page" id="message">

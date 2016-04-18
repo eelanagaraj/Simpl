@@ -211,9 +211,10 @@ function addMessage (sent, whom, text) {
 }
 
 
-// TODO: test this
+
 /*  dynamically displaying messages in the inbox; account for unread vs. read */
 function renderInbox() {
+	// render received
 	var html = ""
 	var id_num;
 	var name;
@@ -238,27 +239,10 @@ function renderInbox() {
 	}
 	$("#message_list").html(html);
 	$("#message_list").listview('refresh');
-
 }
 
 
-/* 	<div id="message_display" data-role="content">
-		<div>
-			<h2> From: Sally Smith </h2>
-			<h2> Date: April 4, 2016 </h2>
-		</div>
-		<div class="big-font-text">
-			<p> Dear grandma, </p>
-			<p> Miss you lots! Please call me when you get the chance. I have done so many cool things and I really can't wait to tell you all about them! I have seriously been doing just the coolest things ever. So many words I love writing words so much, really they are just fascinating. So many words I love writing words so much, really they are just fascinating. So many words I love writing words so much, really they are just fascinating. How are you? How is everything going? I hope to see you very soon! </p>
-			<p> Sincerely, </p>
-			<p> Mary Smith </p>
-		</div>
-		<div> <a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button">Reply</a></div>
-	</div>
-	*/
-
-// another function to view a message; mark as read if 
-// test this
+/* another function to view a message; mark as read if read */
 function viewMessage (message_id) {
 	var id = messages.received[message_id].from
 	var name = contacts.contact_info[id].name
@@ -271,6 +255,41 @@ function viewMessage (message_id) {
 	$("#message_display").html(html)
 	messages.received[message_id].read = true;
 	renderInbox();
+}
+
+
+function viewSent (message_id) {
+	var id = messages.sent[message_id].to
+	var name = contacts.contact_info[id].to
+	var date = messages.sent[message_id].date_time
+	var message_content = messages.sent[message_id].content
+	var html = '<div><h2>To: ' + name + '</h2>'
+	html += '<h2>Date: ' + date + '</h2></div>'
+	html += '<div class="big-font-text">' + message_content + '</div>'
+	$("#message_display").html(html)
+}
+
+
+function renderSentMail () {
+	var html = ""
+	var id_to;
+	var name;
+	var date_time;
+	var img_path;
+	var is_read;
+	for (var i = 0; i < messages.sent.length; i++) {
+		id_to = messages.sent[i].to;
+		name = contacts.contact_info[id_to].name;
+		img_path = contacts.contact_info[id_to].photo_file_path;
+		date_time = messages.sent[i].date_time;
+
+		html += '<li><img src="' + img_path + '">'
+		
+		html += '<div>To: ' + name + '</div><div>' + date_time + '</div>'
+		html += '<div><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button">View Message</a></div></li>'
+	}
+	$("#sent_message_list").html(html);
+	$("#sent_message_list").listview('refresh');
 }
 
 /* should happen on click of send button*/
@@ -321,7 +340,7 @@ function getContactListHTML (id) {
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
 	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
 	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button" onClick="updateFunctionPages(' + id + ')">View</a></div>' 
+	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button" onClick="updateFunctionPages(' + id + ')" class="ui-link ui-btn ui-shadow ui-corner-all">View</a></div>' 
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
@@ -433,17 +452,10 @@ $(function() {
 	$.mobile.page.prototype.options.backBtnTheme = "a";
 	contacts = loadContacts();
 	messages = loadMessages();
-	// test
-	stuff = "Dear grandma, Miss you lots! Please call me when you get the chance. I have been doing lots and lots of super fun and amazing things wow is life not super great wowowowowwo"
-	stuff2= "Hey grammy, I have done so many cool things and I really can't wait to tell you all about them!"
-	builtInClock1 = 0;
-	// for testing : 
-	//addContact("Homer Simpson", "images/02.jpg", "Son", 5555555555, "hsimps@aol.com", 0);
-	//addContact("Lisa Simpson", "images/03.jpg", "Granddaughter", 5555555555, "lsimps@aol.com", 0);
-	//addContact("Marge Simpson", "images/04.jpg", "Daugher-in-law", 5555555555, "msimps@aol.com", 0);
-	addMessage (false, 1, stuff);
-	addMessage (false, 2, stuff2);
 
-	initializeSimpl();
-	renderInbox();
+	builtInClock1 = 0;
+	// is this necessary? why getting initialization error?!?! refresh on listview...
+	$(document).ready (function () {
+		initializeSimpl();
+		renderInbox() });
 });

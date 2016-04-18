@@ -280,6 +280,7 @@ function textMessage(id) {
 	addMessage(1, id, words_n_stuff);
 	$("#sent_text").val(words_n_stuff);
 	saveMessages();
+	clearMessageFields();
 }
 
 function clearMessageFields () {

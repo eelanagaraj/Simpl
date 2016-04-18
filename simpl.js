@@ -135,7 +135,6 @@ function saveContacts () {
 
 
 
-
 /* loads contacts stored in html5 local storage if it exists
 	or if it does not exist, creates new contact list. */
 function loadContacts () {
@@ -193,20 +192,87 @@ function stringOneShorter (str) {
 	return (str.length) ? (str.slice(0,-1)) : str;
 }
 
+
 /* helper functionality for saving a string
-	to messages.sent (1) or messages.received (0) */
+	to messages.sent (1) or messages.received (0)
+	mark received messages as not read initially 
+	~~whom field is an id number~~ */
 function addMessage (sent, whom, text) {
 	var id_num;
 	var now = new Date ();
 	if (sent) {
 		id_num = messages.sent.length;
-		messages.sent.push({id: id_num, date_time: now, to: whom, content: text});
+		messages.sent.push({message_s_id: id_num, date_time: now, to: whom, content: text});
 	}
 	else {
 		id_num = messages.received.length;
-		messages.received.push({id: id_num, date_time: now, from: whom, content: text});
+		messages.received.push({message_r_id: id_num, date_time: now, read: false, from: whom, content: text});
 	}
 }
+
+
+// TODO: test this
+/*  dynamically displaying messages in the inbox; account for unread vs. read */
+function renderInbox() {
+	var html = ""
+	var id_num;
+	var name;
+	var date_time;
+	var img_path;
+	var is_read;
+	for (var i = 0; i < messages.received.length; i++) {
+		id_num = messages.received[i].from;
+		name = contacts.contact_info[id_num].name;
+		img_path = contacts.contact_info[id_num].photo_file_path;
+		date_time = messages.received[i].date_time;
+		is_read = messages.received[i].read;
+		html += '<li><img src="' + img_path + '"><div data-role="header">'
+		if (is_read) {
+			html += 'Read'
+		}
+		else {
+			html += 'Unread'
+		}
+		html += '</div><div>From: ' + name + '</div><div>' + date_time + '</div>'
+		html += '<div><a href="#view_message" onclick="viewMessage(' + i + ')" data-role="button">View Message</a></div></li>'
+	}
+	$("#message_list").html(html);
+	$("#message_list").listview('refresh');
+
+}
+
+
+/* 	<div id="message_display" data-role="content">
+		<div>
+			<h2> From: Sally Smith </h2>
+			<h2> Date: April 4, 2016 </h2>
+		</div>
+		<div class="big-font-text">
+			<p> Dear grandma, </p>
+			<p> Miss you lots! Please call me when you get the chance. I have done so many cool things and I really can't wait to tell you all about them! I have seriously been doing just the coolest things ever. So many words I love writing words so much, really they are just fascinating. So many words I love writing words so much, really they are just fascinating. So many words I love writing words so much, really they are just fascinating. How are you? How is everything going? I hope to see you very soon! </p>
+			<p> Sincerely, </p>
+			<p> Mary Smith </p>
+		</div>
+		<div> <a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button">Reply</a></div>
+	</div>
+	*/
+
+// another function to view a message; mark as read if 
+// test this
+function viewMessage (message_id) {
+	var id = messages.received[message_id].from
+	var name = contacts.contact_info[id].name
+	var date = messages.received[message_id].date_time
+	var message_content = messages.received[message_id].content
+	var	html = '<div><h2>From: ' + name + '</h2>'
+	html += '<h2>Date: ' + date + '</h2></div>'
+	html += '<div class="big-font-text">' + message_content + '</div>'
+	html += '<div><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button">Reply</a></div>'
+	$("#message_display").html(html)
+	messages.received[message_id].read = true;
+	renderInbox();
+}
+
 /* should happen on click of send button*/
 
 function textMessage(id) {
@@ -241,11 +307,12 @@ function updateFunctionPages (id) {
 	$("#backto").attr("href", zoompage);
 	$("#send_btn").html(on_send);
 	$("#backto").attr("href", zoompage);
+	clearMessageFields();
 	// update message linking pages
 }
 
 
-/* helper function that adds a contact to the main display list*/
+/* helper function that returns contact html to the main display list*/
 function getContactListHTML (id) {
 	var html = "";
 	html += '<li class="ui-li-has-thumb ui-first-child">'
@@ -365,10 +432,17 @@ $(function() {
 	$.mobile.page.prototype.options.backBtnTheme = "a";
 	contacts = loadContacts();
 	messages = loadMessages();
+	// test
+	stuff = "Dear grandma, Miss you lots! Please call me when you get the chance. I have been doing lots and lots of super fun and amazing things wow is life not super great wowowowowwo"
+	stuff2= "Hey grammy, I have done so many cool things and I really can't wait to tell you all about them!"
 	builtInClock1 = 0;
 	// for testing : 
 	//addContact("Homer Simpson", "images/02.jpg", "Son", 5555555555, "hsimps@aol.com", 0);
 	//addContact("Lisa Simpson", "images/03.jpg", "Granddaughter", 5555555555, "lsimps@aol.com", 0);
 	//addContact("Marge Simpson", "images/04.jpg", "Daugher-in-law", 5555555555, "msimps@aol.com", 0);
+	addMessage (false, 1, stuff);
+	addMessage (false, 2, stuff2);
+
 	initializeSimpl();
+	renderInbox();
 });

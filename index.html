@@ -117,8 +117,8 @@
 	</div> 
 	<div id="message_container" class="content">
 		<div>
-			<ul data-role="listview" data-filter="true" data-filter-placeholder="Search Messages">           
-				<li><img src="images/01.jpg" alt="profile picture"> 
+			<ul id="message_list" data-role="listview" data-filter="true" data-filter-placeholder="Search Messages">           
+		<!--		<li><img src="images/01.jpg" alt="profile picture"> 
 					<div data-role="header"> Unread </div>
 					<div> From: Sally Smith </div>
 					<div> Date: April 4, 2016 </div>
@@ -141,7 +141,7 @@
 					<div> From: Jane Smith </div>
 					<div> Date: April 1, 2016 </div>
 					<div> <a href="#view_message" data-role="button"> View Message </a></div>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>
@@ -154,7 +154,7 @@
 		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
-	<div data-role="content">
+	<div id="message_display" data-role="content">
 		<div>
 			<h2> From: Sally Smith </h2>
 			<h2> Date: April 4, 2016 </h2>

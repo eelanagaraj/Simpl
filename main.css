@@ -95,8 +95,14 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+img {
+    max-width: 100%;
+}
 
-
+.meep {
+    color: blue;
+    
+}
 
 
 .center_wrapper {

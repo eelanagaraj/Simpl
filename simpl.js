@@ -133,7 +133,9 @@ function saveContacts () {
 function loadContacts () {
 	var stuff = JSON.parse(localStorage.getItem("contacts"));
 	// make sure not null, if no contacts
-	return stuff ? stuff : {contact_info:[]}
+	// if null
+	starter_pack = {contact_info: [{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", display:0}]}
+	return stuff ? stuff : starter_pack
 }
 
 
@@ -442,12 +444,12 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<div data-role="page" id="zoomcontact' + id + '">';
 	zoomhtml += getStringHeader();
 	zoomhtml += '<div class="zoom_profile" data-role="content">'
-	zoomhtml += '<div class="zoom_heading ui-title" data-role="header"><h3>' + contacts.contact_info[id].name + '</h3></div>'
-	zoomhtml += '<div><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 80%;"></div>'
+	zoomhtml += '<div class="zoom_heading" data-role="header"><center><h2><b>' + contacts.contact_info[id].name + '</b></h2></center></div>'
+	zoomhtml += '<div><center><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 100%;"></center></div>'
 	zoomhtml += '<ui data-role="listview">'
 	//zoomhtml += '<li><a href="tel:' + Number(stringToNum(contacts.contact_info[id].phone_num))
 	//zoomhtml += '" data-role="button" rel="external" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
-	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
+	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="meep ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 //	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
 	zoomhtml += '<li><a href="#message" onclick="clearMessageFields()" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'

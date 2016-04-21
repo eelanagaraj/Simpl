@@ -100,8 +100,17 @@ img {
 }
 
 .meep {
-    color: blue;
-    
+    position: relative;
+    float: right;
+    width: 140px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 30px;
+    background-color: #99ddff;
+    border-radius: 10px;
+    border: 10px;
+
 }
 
 

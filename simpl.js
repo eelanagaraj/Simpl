@@ -134,7 +134,11 @@ function loadContacts () {
 	var stuff = JSON.parse(localStorage.getItem("contacts"));
 	// make sure not null, if no contacts
 	// if null
-	starter_pack = {contact_info: [{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", display:0}]}
+	var starter_pack = {contact_info: 
+		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", display:0},
+		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", display:0},
+		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", display:0}
+		]}
 	return stuff ? stuff : starter_pack
 }
 
@@ -189,10 +193,23 @@ function clearWebInterfaceFields() {
 
 /* loads all sent and received messages stored in local storage
 	if it exists, or if it does not exist, creates new message threads */
+function testerMessages () {
+	var eelamsg = "Dear grandma, miss you lots! How are you doing? Hope everything is fine with you! I have been doing well and am enjoying school a lot, though I really can't wait until the next time I get to visit you! Love, Eela"
+	var charlenemsg = "Hi! can't wait to see you the next time I visit! How are you doing? Can you give me a call sometime in the near future? I really do miss you and would love to talk to you very soon! Miss you lots! xoxo Charlene"
+	var bowenmsg = "Hello! How are you doing? Hope everything is fine with you! I have been doing well and am enjoying school a lot, though I really can't wait until the next time I get to visit you! -Bowen"
+	var now1 = new Date ();
+	var now2 = new Date ();
+	var now3 = new Date ();
+	return [{message_r_id: 0, date_time: now3, read: false, from: 0, content: eelamsg}, {message_r_id: 1, date_time: now2, read: false, from: 1, content: charlenemsg}, {message_r_id: 2, date_time: now1, read: true, from: 2, content: bowenmsg}]
+}
+
+
 function loadMessages () {
 	var stuff = JSON.parse(localStorage.getItem("messages"));
 	// make sure not null, and if so create new threads
-	return stuff ? stuff : {sent: [], received: []}
+	var starter_pack = testerMessages()
+
+	return stuff ? stuff : {sent: [], received: starter_pack}
 }
 
 
@@ -391,7 +408,7 @@ function getContactListHTML (id) {
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
 	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
 	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<div class="ui-li-aside"><a href="#zoomcontact' + id + '" data-role="button" onClick="updateFunctionPages(' + id + ')" class="ui-link ui-btn ui-shadow ui-corner-all">View</a></div>' 
+	html += '<div class="meep">View</div>' 
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
@@ -449,7 +466,7 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<ui data-role="listview">'
 	//zoomhtml += '<li><a href="tel:' + Number(stringToNum(contacts.contact_info[id].phone_num))
 	//zoomhtml += '" data-role="button" rel="external" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
-	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="meep ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
+	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 //	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="ui-btn ui-icon-video ui-btn-icon-left"><h3>Video Call</h3></a></li>'
 	zoomhtml += '<li><a href="#message" onclick="clearMessageFields()" class="ui-btn ui-icon-mail ui-btn-icon-left"><h3>Message</h3></a></li>'

@@ -16,7 +16,7 @@
 
 <div data-role="page" id="main">
 	<div data-role="header">
-		<h1>SIMPL</h1>
+		<h1><b>SIMPL</b></h1>
 	</div>
 <br />
 	<div>
@@ -103,8 +103,8 @@
 		</ul>
 	</div>
 	<div>
-		<a href="#home" class="button-left ui-shadow" data-role="button" ontap="popupAddContact()" onvclick="popupAddContact()" onclick="popupAddContact()">Yes</a>
-		<a href="#home" class="button-right ui-shadow" data-role="button">No</a>
+		<a href="#home" class="boldyes button-left ui-shadow" data-role="button" ontap="popupAddContact()" onvclick="popupAddContact()" onclick="popupAddContact()">Yes</a>
+		<a href="#home" class="boldno button-right ui-shadow" data-role="button">No</a>
 	</div>
 </div>
  
@@ -118,7 +118,7 @@
 	<div id="message_container" class="content">
 		<div data-role="navbar">
 			<ul>
-				<li><a class="ui-btn-active ui-state-persist ui-shadow">Received</a></li>
+				<li><a class="ui-btn-active">Received</a></li>
 				<li><a href="#inbox_received" onclick="renderSentMail()">Sent</a></li>
 			</ul>
 		</div>
@@ -139,8 +139,8 @@
 	<div id="sent_message_container" class="content">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="#inbox">Received</a></li>
-				<li><a class="ui-btn-active ui-state-persist ui-shadow">Sent</a></li>
+				<li><a class="inbox-btn" href="#inbox">Received</a></li>
+				<li><a class="inbox-btn ui-btn-active ui-state-persist ui-shadow">Sent</a></li>
 			</ul>
 		</div>
 		<div>

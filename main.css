@@ -99,10 +99,15 @@ img {
     max-width: 100%;
 }
 
+.top-bord {
+    border-top: 2px black solid;
+}
+
 .meep {
     position: relative;
     float: right;
-    width: 140px;
+    margin-right:-20px;
+    width: 120px;
     height: 60px;
     line-height: 60px;
     text-align: center;
@@ -113,22 +118,115 @@ img {
 
 }
 
+.from-name {
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+}
+
+.reply-btn {
+    position: relative;
+    width: 90%;
+    text-decoration: none;
+    font-size: 30px;
+    background-color: #99ddff;
+    border-radius: 10px;
+    border: 10px;
+    color: black;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
+
+.a-btn {
+    text-decoration: none;
+    color: black;
+    background-color: #99ddff;
+}
+
+.message-btn {
+    position: relative;
+    height: 60px;
+    width: 220px;
+    line-height: 60px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    background-color: #99ddff;
+    border-radius: 10px;
+    border: 10px;
+    color: black;
+}
+
+.read-msg {
+    font-size: 22px;
+    background-color: #E0E0E0 ;
+    border:gray;
+    border-radius:3px;
+    border-top:2px black solid;
+}
+
+.unread-msg {
+    font-size: 22px;
+    background-color: #E0E0E0 ;
+    font-weight: bold;
+    color: #009900;
+    border-radius:3px;
+    border-top:2px black solid;
+}
+
+.msg-date{
+    font-size: 20px;
+}
+
+.filter-font{
+    font-size: 30px;
+}
+
+.ui-navbar li .ui-btn {
+    font-size: 22px;
+    display: block;
+    margin: 0;
+    border-right-width: 0;
+}
+
+.msg-name {
+    font-size: 24px;
+    font-weight: bold;
+}
 
 .bigiconfont {
-    font-size: 20px;
+    font-size: 24px;
 
 }
 
+.contact-list-name {
+    font:bold;
+    border-top: 2px black solid;
+
+}
 
 .center_wrapper {
     margin: 0 auto;
     text-align: center;
 }
 
+.wrap {
+    white-space: normal !important;
+}
 
+.boldyes {
+    background-color: #66FF00;
+    font-weight: bold;
+    font-size: 20px;
+}
 
-
-
+.boldno {
+    background-color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
 
 
 

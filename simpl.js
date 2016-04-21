@@ -197,9 +197,9 @@ function testerMessages () {
 	var eelamsg = "Dear grandma, miss you lots! How are you doing? Hope everything is fine with you! I have been doing well and am enjoying school a lot, though I really can't wait until the next time I get to visit you! Love, Eela"
 	var charlenemsg = "Hi! can't wait to see you the next time I visit! How are you doing? Can you give me a call sometime in the near future? I really do miss you and would love to talk to you very soon! Miss you lots! xoxo Charlene"
 	var bowenmsg = "Hello! How are you doing? Hope everything is fine with you! I have been doing well and am enjoying school a lot, though I really can't wait until the next time I get to visit you! -Bowen"
-	var now1 = new Date ();
-	var now2 = new Date ();
-	var now3 = new Date ();
+	var now1 = (new Date ()).toDateString();
+	var now2 = (new Date ()).toDateString();
+	var now3 = (new Date ()).toDateString();
 	return [{message_r_id: 0, date_time: now3, read: false, from: 0, content: eelamsg}, {message_r_id: 1, date_time: now2, read: false, from: 1, content: charlenemsg}, {message_r_id: 2, date_time: now1, read: true, from: 2, content: bowenmsg}]
 }
 
@@ -237,7 +237,7 @@ function stringOneShorter (str) {
 	~~whom field is an id number~~ */
 function addMessage (sent, whom, text) {
 	var id_num;
-	var now = new Date ();
+	var now = (new Date ()).toDateString();
 	if (sent) {
 		id_num = messages.sent.length;
 		messages.sent.push({message_s_id: id_num, date_time: now, to: whom, content: text});
@@ -255,7 +255,7 @@ function textMessage(id) {
 	addMessage(1, id, words_n_stuff);
 	$("#sent_text").val(words_n_stuff);
 	saveMessages();
-	clearMessageFields();
+	//clearMessageFields();
 }
 
 function clearMessageFields () {
@@ -310,15 +310,17 @@ function renderInbox() {
 		img_path = contacts.contact_info[id_num].photo_file_path;
 		date_time = messages.received[i].date_time;
 		is_read = messages.received[i].read;
-		html += '<li><img src="' + img_path + '"><div data-role="header">'
 		if (is_read) {
-			html += 'Read'
+			html += '<div class="read-msg">Read</div>'
 		}
 		else {
-			html += 'Unread'
+			html += '<div class="unread-msg">Unread</div>'
 		}
-		html += '</div><div>From: ' + name + '</div><div>' + date_time + '</div>'
-		html += '<div><a href="#view_message" onclick="viewMessage(' + i + ')" data-role="button">View Message</a></div></li>'
+		html += '<div class="msg-name">From: ' + name + '</div>'
+		html +='<div class="msg-date">' + date_time + '</div>'
+		html += '<li><img src="' + img_path + '">'
+		
+		html += '<div class="message-btn"><a href="#view_message" onclick="viewMessage(' + i + ')" style="color: black; text-decoration: none;" >View Message</a></div></li>'
 	}
 	$("#message_list").html(html);
 	$("#message_list").listview('refresh');
@@ -331,10 +333,10 @@ function viewMessage (message_id) {
 	var name = contacts.contact_info[id].name
 	var date = messages.received[message_id].date_time
 	var message_content = messages.received[message_id].content
-	var	html = '<div><h2>From: ' + name + '</h2>'
-	html += '<h2>Date: ' + date + '</h2></div>'
-	html += '<div class="big-font-text">' + message_content + '</div>'
-	html += '<div><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button">Reply</a></div>'
+	var	html = '<div><h2><b>From: ' + name + '</b></h2>'
+	html += '<h3>Date: ' + date + '</h3></div>'
+	html += '<div class="msg-date">' + message_content + '</div>'
+	html += '<div class="reply-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button" class="a-btn" style="color: black; text-decoration: none;">Reply</a></div>'
 	$("#message_display").html(html)
 	messages.received[message_id].read = true;
 	renderInbox();
@@ -343,12 +345,12 @@ function viewMessage (message_id) {
 /* helper function for viewing a message that the user has sent */
 function viewSent (message_id) {
 	var id = messages.sent[message_id].to
-	var name = contacts.contact_info[id].to
+	var name = contacts.contact_info[id].name
 	var date = messages.sent[message_id].date_time
 	var message_content = messages.sent[message_id].content
-	var html = '<div><h2>To: ' + name + '</h2>'
-	html += '<h2>Date: ' + date + '</h2></div>'
-	html += '<div class="big-font-text">' + message_content + '</div>'
+	var html = '<div><h2><b>To: ' + name + '</b></h2>'
+	html += '<h3>Date: ' + date + '</h3></div>'
+	html += '<div class="msg-date">' + message_content + '</div>'
 	$("#message_display").html(html)
 }
 
@@ -365,11 +367,12 @@ function renderSentMail () {
 		name = contacts.contact_info[id_to].name;
 		img_path = contacts.contact_info[id_to].photo_file_path;
 		date_time = messages.sent[i].date_time;
-
-		html += '<li><img src="' + img_path + '">'
 		
-		html += '<div>To: ' + name + '</div><div>' + date_time + '</div>'
-		html += '<div><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button">View Message</a></div></li>'
+		html += '<div class="msg-name top-bord">To: ' + name + '</div>'
+		html +='<div class="msg-date">' + date_time + '</div>'
+		html += '<li><img src="' + img_path + '">'
+
+		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button" style="text-decoration:none; color:black;">View Message</a></div></li>'
 	}
 	$("#sent_message_list").html(html);
 	$("#sent_message_list").listview('refresh');
@@ -403,11 +406,13 @@ function updateFunctionPages (id) {
 /* helper function that returns contact html to the main display list*/
 function getContactListHTML (id) {
 	var html = "";
+	html += '<h2 class="contact-list-name">' + contacts.contact_info[id].name + '</h2>'
 	html += '<li class="ui-li-has-thumb ui-first-child">'
-	html += '<a href="#zoomcontact' + id +  '" onclick="updateFunctionPages(' + id + ')">'
+	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
+	html += '<a class="bigiconfont" href="#zoomcontact' + id +  '" onclick="updateFunctionPages(' + id + ')">'
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
-	html += '<h1>' + contacts.contact_info[id].name + '</h1>'
-	html += '<p>' + contacts.contact_info[id].relation + '</p>' // maybe take this out if needbe, or add a condition/make it optional
+	//html += '<h1 class="bigiconfont">' + contacts.contact_info[id].name + '</h1>'
+//	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
 	html += '<div class="meep">View</div>' 
 	html += '</a></li>'
 	//$("#contact_list").append(html);
@@ -464,10 +469,7 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<div class="zoom_heading" data-role="header"><center><h2><b>' + contacts.contact_info[id].name + '</b></h2></center></div>'
 	zoomhtml += '<div><center><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 70%;"></center></div>'
 	zoomhtml += '<ui data-role="listview">'
-	//zoomhtml += '<li><a href="tel:' + Number(stringToNum(contacts.contact_info[id].phone_num))
-	//zoomhtml += '" data-role="button" rel="external" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="bigiconfont ui-btn ui-icon-phone ui-btn-icon-left"><h2><b>Call</b></h2></a></li>'
-//	zoomhtml += '<li><a href="#call" class="ui-btn ui-icon-phone ui-btn-icon-left"><h3>Call</h3></a></li>'
 	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="bigiconfont ui-btn ui-icon-video ui-btn-icon-left"><h2><b>Video Call</b></h2></a></li>'
 	zoomhtml += '<li><a href="#message" onclick="clearMessageFields()" class="bigiconfont ui-btn ui-icon-mail ui-btn-icon-left"><h2><b>Message</b></h2></a></li>'
 	zoomhtml += '</ui></div></div>'

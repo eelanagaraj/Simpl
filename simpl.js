@@ -414,10 +414,18 @@ function getContactListHTML (id) {
 	//html += '<h1 class="bigiconfont">' + contacts.contact_info[id].name + '</h1>'
 //	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
 	html += '<div class="meep">View</div>' 
+	html += '<div class="ui-btn" onclick="deleteContact(id)">Delete</div>'
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
 
+}
+
+
+function deleteContact(id){
+	var p = id.parentNode;
+	p.parentNode.removeChild(p);
+	saveContacts();
 }
 
 

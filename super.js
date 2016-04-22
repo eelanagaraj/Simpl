@@ -22,17 +22,6 @@ function addContact (name, photo_file_path, relation, phone_num, email_addr, dis
 }
 
 
-/* adding contacts for comfort setting 1 */
-function popupAddContact() {
-	// parse all info from the pop-up fields
-	var name = $("#popup_name").text();
-	var relation = $("#popup_relation").text();
-	var photo_src = $("#popup_photo").attr('src');
-	var phone_num = stringToNum($("#popup_number").text())
-	var email = $("#popup_email").text().split(" ")[1]
-	addContact (name, photo_src, relation, phone_num, email, 1);
-}
-
 // for web app --> create web_app page; have that page allow user to fill in fields, "FB verify" and then sends popup request which will show up 
 
 
@@ -232,39 +221,6 @@ function stringOneShorter (str) {
 }
 
 
-/* helper functionality for saving a string to messages.sent (1) or messages.received (0)
-	mark received messages as not read initially 
-	~~whom field is an id number~~ */
-function addMessage (sent, whom, text) {
-	var id_num;
-	var now = (new Date ()).toDateString();
-	if (sent) {
-		id_num = messages.sent.length;
-		messages.sent.push({message_s_id: id_num, date_time: now, to: whom, content: text});
-	}
-	else {
-		id_num = messages.received.length;
-		messages.received.push({message_r_id: id_num, date_time: now, read: false, from: whom, content: text});
-	}
-}
-
-
-/* should happen on click of send button*/
-function textMessage(id) {
-	var words_n_stuff = $("#text_to_send").val()
-	addMessage(1, id, words_n_stuff);
-	$("#sent_text").val(words_n_stuff);
-	saveMessages();
-	//clearMessageFields();
-}
-
-function clearMessageFields () {
-	$("#text_to_send").val("");
-	$("#sent_text").val("");
-}
-
-
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~FORM VALIDATION~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -295,88 +251,6 @@ function getStringHeader () {
 	return html
 }
 
-/*  dynamically displaying messages in the inbox; account for unread vs. read */
-function renderInbox() {
-	// render received
-	var html = ""
-	var id_num;
-	var name;
-	var date_time;
-	var img_path;
-	var is_read;
-	for (var i = 0; i < messages.received.length; i++) {
-		id_num = messages.received[i].from;
-		name = contacts.contact_info[id_num].name;
-		img_path = contacts.contact_info[id_num].photo_file_path;
-		date_time = messages.received[i].date_time;
-		is_read = messages.received[i].read;
-		if (is_read) {
-			html += '<div class="read-msg">Read</div>'
-		}
-		else {
-			html += '<div class="unread-msg">Unread</div>'
-		}
-		html += '<div class="msg-name">From: ' + name + '</div>'
-		html +='<div class="msg-date">' + date_time + '</div>'
-		html += '<li><img src="' + img_path + '">'
-		
-		html += '<div class="message-btn"><a href="#view_message" onclick="viewMessage(' + i + ')" style="color: black; text-decoration: none;" >View Message</a></div></li>'
-	}
-	$("#message_list").html(html);
-	$("#message_list").listview('refresh');
-}
-
-
-/* another function to view a message; mark as read if read */
-function viewMessage (message_id) {
-	var id = messages.received[message_id].from
-	var name = contacts.contact_info[id].name
-	var date = messages.received[message_id].date_time
-	var message_content = messages.received[message_id].content
-	var	html = '<div><h2><b>From: ' + name + '</b></h2>'
-	html += '<h3>Date: ' + date + '</h3></div>'
-	html += '<div class="msg-date">' + message_content + '</div>'
-	html += '<div class="reply-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button" class="a-btn" style="color: black; text-decoration: none;">Reply</a></div>'
-	$("#message_display").html(html)
-	messages.received[message_id].read = true;
-	renderInbox();
-}
-
-/* helper function for viewing a message that the user has sent */
-function viewSent (message_id) {
-	var id = messages.sent[message_id].to
-	var name = contacts.contact_info[id].name
-	var date = messages.sent[message_id].date_time
-	var message_content = messages.sent[message_id].content
-	var html = '<div><h2><b>To: ' + name + '</b></h2>'
-	html += '<h3>Date: ' + date + '</h3></div>'
-	html += '<div class="msg-date">' + message_content + '</div>'
-	$("#message_display").html(html)
-}
-
-/* renders the html for the list of sent messages */
-function renderSentMail () {
-	var html = ""
-	var id_to;
-	var name;
-	var date_time;
-	var img_path;
-	var is_read;
-	for (var i = 0; i < messages.sent.length; i++) {
-		id_to = messages.sent[i].to;
-		name = contacts.contact_info[id_to].name;
-		img_path = contacts.contact_info[id_to].photo_file_path;
-		date_time = messages.sent[i].date_time;
-		
-		html += '<div class="msg-name top-bord">To: ' + name + '</div>'
-		html +='<div class="msg-date">' + date_time + '</div>'
-		html += '<li><img src="' + img_path + '">'
-
-		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button" style="text-decoration:none; color:black;">View Message</a></div></li>'
-	}
-	$("#sent_message_list").html(html);
-	$("#sent_message_list").listview('refresh');
-}
 
 //NOTE : to get all messages chronologically, just go in order of incr id num
 // getting all messages by person (thread) would require also adding to a separate
@@ -411,11 +285,7 @@ function getContactListHTML (id) {
 	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
 	html += '<a class="bigiconfont" href="#zoomcontact' + id +  '" onclick="updateFunctionPages(' + id + ')">'
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
-	//html += '<h1 class="bigiconfont">' + contacts.contact_info[id].name + '</h1>'
-//	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<div class="meep">View</div>' 
-//	html += '<div class="ui-btn" onclick="deleteContact(id)">Delete</div>'
-
+	html += '<div class="ui-btn" onclick="deleteContact(id)">Delete</div>'
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
@@ -423,44 +293,12 @@ function getContactListHTML (id) {
 }
 
 
-function callClock1() {
-	var secs1 = 0;
-	var mins1 = 0;
-	document.getElementById("secs1").innerText = secs1;
-	document.getElementById("mins1").innerText = mins1;
-	if (builtInClock1) {
-		clearInterval(builtInClock1);
-	}
-	builtInClock1 = setInterval(function() {
-		secs1 ++;
-		modsecs = secs1 % 60;
-		document.getElementById("secs1").innerText = modsecs;
-		if (! (modsecs)) {
-			mins1++;
-			document.getElementById("mins1").innerText = mins1;
-		}
-	}, 1000);
+function deleteContact(id){
+	var p = id.parentNode;
+	p.parentNode.removeChild(p);
+	saveContacts();
 }
 
-
-function callClockVoice () {
-	var secs1 = 0;
-	var mins1 = 0;
-	document.getElementById("c_secs").innerText = secs1;
-	document.getElementById("c_mins").innerText = mins1;
-	if (builtInClock1) {
-		clearInterval(builtInClock1);
-	}
-	builtInClock1 = setInterval(function() {
-		secs1 ++;
-		modsecs = secs1 % 60;
-		document.getElementById("c_secs").innerText = modsecs;
-		if (! (modsecs)) {
-			mins1++;
-			document.getElementById("c_mins").innerText = mins1;
-		}
-	}, 1000);
-}
 
 /* helper function that creates zoom pages for a given contact id */
 function getZoomPageHTML(id) {
@@ -486,9 +324,6 @@ function initializeSimpl () {
 	var html = "";
 	var zoomhtml = "";
 
-	// for testing only!! --> the buttons for popup and add new contact
-	html += '<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a></li>'
-	html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact (Setting 2) Test </a></li>'
 	html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {

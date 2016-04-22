@@ -62,12 +62,26 @@
  	 	<input type= "email" name="email" id="email" value>
  	 </div>
  	  <div>
- 	 	<a href="http://www.facebook.com" class="ui-btn">Verify with Facebook</a>
+ 	 	<a href="#pop" class="ui-btn">Verify with Facebook</a>
  	 </div>
  </div>
 
   <a href="#main" button class = "ui-btn"> Add SuperUser </a>
 
+</div>
+
+<div data-role="page" id="pop" style="dialog" data-close-btn="none">
+	<div data-form = "ui-bar-a" data-role = "header" role= "banner">
+		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> Register with Facebook </h1>
+	</div> 
+	<div id="facebook">
+		<ul>
+			<p> <img src="facebook.png" alt="FB" id="photo" style="width: 25%;"></p>
+		</ul>
+	</div>
+	<div>
+		<a href="#home" class="button-right ui-shadow" data-role="button">Ok</a>
+	</div>
 </div>
 
 <div data-role = "page" id= "main">

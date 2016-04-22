@@ -173,6 +173,14 @@ img {
     color: black;
 }
 
+.secret-btn {
+    background: transparent;
+    border: none !important;
+    font-size:0px;
+    width: 1px;
+    height: 1px;
+}
+
 .read-msg {
     font-size: 22px;
     background-color: #E0E0E0 ;

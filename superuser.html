@@ -16,14 +16,20 @@
 <body>
 
 <div data-role = "page" id= "begin">
-	  <a href = "#login" class = "ui-btn">Log in</a>
-	  <a href="#new" class="ui-btn" >Register</a>
+	<div data-role="header">
+		<h1><b>SIMPL</b></h1>
+	</div>
+	<center><h3>Welcome! </h3></center>
+	<a href = "#login" class = "ui-btn">Log in</a>
+	<a href="#new" class="ui-btn" >Register</a>
+	<a href="#web_user_interface" onclick="clearWebInterfaceFields()" class="ui-btn"> Remote Add Contact </a>
 </div>
 
 <div data-role="page" id="login">
 	<div data-role="header">
-		<h1>Login to Superuser Account</h1>
+		<h1><b>SIMPL</b></h1>
 	</div>
+	<h3><center>Login to Superuser Account</center></h3>
 	<div class="ui-field-contain">
 		<label for="basic">Username:</label>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
@@ -41,7 +47,13 @@
 <div data-role="page" id="new">
 
  <div data-role="header">
- <h1>Superuser Setup</h1>
+	<div data-role="header">
+		<h1><b>SIMPL</b></h1>
+	</div>
+</div>
+ <div data-role="navbar">
+ 	<br>
+ <center><b>Superuser Setup</b></center>
  </div>
 
  <div class="ui-field-contain">
@@ -87,25 +99,18 @@
 
 
 <div data-role = "page" id= "main">
-
+	<div data-role="header">
+		<h1><b>SIMPL</b></h1>
+	</div>
+	<center><h3>Add Contacts Settings</h3></center>
 	<div class="ui-controlgroup-controls">
 		<div class="ui-radio">
 			<label for="radio-view-a-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-first-child ui-btn-active ui-radio-on">Simple Contacts</label>
-			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-a-a" value="list" checked="checked" data-cacheval="false">
+			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-a-a" onchange="updateSettings()" value="list" checked="checked" data-cacheval="false">
 		</div>
 		<div class="ui-radio">
 			<label for="radio-view-b-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-last-child ui-btn-active ui-radio-on">Advanced Contacts</label>
-			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-b-a" value="list" checked="checked" data-cacheval="false">
-		</div>
-		<div class = "ui-checkbox">
-			<label for="checkbox-b" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-checkbox-on">
-				Advanced settings
-			</label>
-			<input data-theme="a" type="checkbox" name="checkbox-b" id="checkbox-b" checked = "checked" data-cacheval="false">
-			<label for="checkbox-c" data-form="ui-btn-up-a" class = "ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-last-child ui-checkbox-on">
-				Additional features
-			</label>
-			<input data-theme="a" type="checkbox" name="checkbox-c" id="checkbox-c" checked = "checked" data-cacheval="false">
+			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-b-a" onchange="updateSettings()" value="list" data-cacheval="false">
 		</div>
 	</div>
 	<div>
@@ -119,7 +124,8 @@
 		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
 	</div> 
 	<div data-role="content">
-			<a href="#add_contact" class="ui-btn">Add Contact</a>
+		<a href="#main" class="ui-btn">User's Settings</a>
+		<a href="#add_contact" class="ui-btn">Add Contact</a>
 		<div>
 			<article data-role="content">
 				<ul data-role="listview" data-theme="c" id="contact_list">        
@@ -215,6 +221,66 @@
 	</form>
 	<div>
 		<a href="#home" data-role="button" onclick="userAddContact()"><b>Add!</b></a>
+	</div>
+</div>
+
+<div data-role="page" id="web_user_interface">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-rel="back">
+		<hi class = "ui-title ui-bar-a" tabindex = "0" data-role="button"role="heading" aria-level = "1">SIMPL </h1>
+	</div>
+
+	<div data-role="content">
+
+	<!-- <form id="web_user_inputs" onsubmit="WRITEDISFUNC()" > 
+	TODO: split into two screens: must validate who you are requesting first, then move on to entering your info; or other way around? -->
+
+
+	<form id="web_user_inputs" onsubmit="sendRequest()" ><center><h2>Send Contact Request</h2></center>
+		<h4><b>Your Information:</b></h4>
+		<fieldset class="form-group">
+			<label for="input_name">Name</label>
+			<input type="text" class="form-control" id="input_name" placeholder="Joe Smith">
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="input_phonenum">Phone Number</label>
+			<input type="tel" class="form-control" id="input_phonenum" placeholder="123 - 456 - 789">
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="input_email">Email address</label>
+			<input type="email" class="form-control" id="input_email" placeholder="e.g. joesmith@gmail.com">
+ 		</fieldset>
+  		<fieldset class="form-group">
+  			<label for="input_photo_file">Photo Upload</label>
+  			<input type="file" class="form-control-file" id="input_photo_file">
+  			<small class="text-muted">Upload a picture of yourself! For best results, select a square picture.</small>
+  		</fieldset>
+		<fieldset class="form-group">
+			<label for="input_relation">What is your relationship to requestee?</label>
+				<select class="form-control" id="input_relation">
+					<option> </option>
+					<option>Son</option>
+					<option>Daughter</option>
+					<option>Grandson</option>
+					<option>Granddaughter</option>
+					<option>Great-grandson</option>
+					<option>Great-granddaughter</option>
+					<option>Son-in-law</option>
+					<option>Daughter-in-law<o/option>
+					<option>Friend</option>
+				</select>
+    	</fieldset>
+  		<h4><b>Send Request To:</b></h4>	
+  		<fieldset class="form-group">
+			<label for="input_simpl_username">Simpl User's Name</label>
+			<input type="text" class="form-control" id="input_simpl_username" placeholder="Bob Smith">
+		</fieldset>	
+		<fieldset class="form-group">
+			<label for="input_simpl_userphone">Simpl User's Phone Number</label>
+			<input type="tel" class="form-control" id="input_simpl_userphone" placeholder="123 - 456 - 789">
+			<small class="text-muted">Note: Simpl user's name and phone number must match our system for the request to go through, for our users' safety.</small>
+		</fieldset>
+  		<button type="submit" class="btn btn-primary" href="#web_user_success">Submit</button>
+	</form>
 	</div>
 </div>
 

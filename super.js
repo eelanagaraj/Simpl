@@ -127,7 +127,7 @@ function loadContacts() {
 		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", show:1},
 		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", show:1},
 		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", show:1}
-		]}
+		], settings:0}
 	return stuff ? stuff : starter_pack
 }
 
@@ -222,8 +222,15 @@ function stringOneShorter (str) {
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~~~~FORM VALIDATION~~~~~~~~~~~~ */
+/* ~~~~~~~~~~FORM VALIDATION, SETTINGS~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+function updateSettings () {
+	comfort_level = parseInt($('input[name=radio-view-a]:checked').val());
+	contacts.settings = comfort_level;
+	initializeSimpl();
+	$("#contact_list").listview('refresh');
+}
 
 //TODO
 

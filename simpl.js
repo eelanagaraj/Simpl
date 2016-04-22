@@ -99,6 +99,7 @@ function userAddContact () {
 	addContact(name, default_pic, relation, phone_num, email_addr, 1);
 }
 
+
 /* reset adding contact text fields */
 function clearAddContactFields () {
 	$("#new_name_field").val("");
@@ -133,12 +134,12 @@ function saveContacts () {
 function loadContacts () {
 	var stuff = JSON.parse(localStorage.getItem("contacts"));
 	// make sure not null, if no contacts
-	// if null
+	// settings : 0 for simple, 1 for advanced
 	var starter_pack = {contact_info: 
 		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", show:1},
 		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", show:1},
 		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", show:1}
-		]}
+		], settings:0}
 	return stuff ? stuff : starter_pack
 }
 
@@ -269,17 +270,16 @@ function clearMessageFields () {
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~~~~FORM VALIDATION~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~SETTINGS~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-//TODO
+function updateSettings () {
+	comfort_level = parseInt($('input[name=radio-view-a]:checked').val());
+	contacts.settings = comfort_level;
+	initializeSimpl();
+	$("#contact_list").listview('refresh');
+}
 
-// WEB INTERFACE VALIDATION
-
-// SUPER USER VALIDATION 
-
-
-// SETTING 2 ADD CONTACT VALIDATION
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -484,10 +484,12 @@ function initializeSimpl () {
 	var html = "";
 	var zoomhtml = "";
 
-	// for testing only!! --> the buttons for popup and add new contact
-	html += '<li><a href="#contact_popup" data-transition="pop" data-rel="dialog">New Contact Request Popup Test </a></li>'
-	html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact (Setting 2) Test </a></li>'
+	// for testing only!! -->
 	html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
+	// if advanced settings
+	if (contacts.settings) {
+		html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact </a></li>'
+	}
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {
 		if (contacts.contact_info[i].show) {

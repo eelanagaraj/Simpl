@@ -138,6 +138,20 @@ img {
     line-height: 50px;
 }
 
+.delete-btn {
+    position: relative;
+    width: 90%;
+    text-decoration: none;
+    font-size: 30px;
+    background-color: red;
+    border-radius: 10px;
+    border: 10px;
+    color: black;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
 
 .a-btn {
     text-decoration: none;

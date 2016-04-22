@@ -9,7 +9,7 @@
 function addContact (name, photo_file_path, relation, phone_num, email_addr, display) {
 	var id_num = contacts.contact_info.length;
 	contacts.contact_info.push({id: id_num, name: name, photo_file_path: photo_file_path, 
-		relation: relation, phone_num: phone_num, email_addr: email_addr, display: display});
+		relation: relation, phone_num: phone_num, email_addr: email_addr, show: display});
 
 	saveContacts();
 
@@ -77,7 +77,7 @@ function formatPhoneNumber (num) {
 function userAddContact () {
 	var name = $("#new_name_field").val();
 	var phone_num = formatPhoneNumber($("#add_contact_number").val());
-	var email_addr = $("#new_email_field");
+	var email_addr = $("#new_email_field").val();
 	// handle no relation being selected
 	var relation = $('input[name=radio-choice-h-2]:checked').val()
 	if (!relation) {
@@ -119,14 +119,14 @@ function saveContacts () {
 
 /* loads contacts stored in html5 local storage if it exists
 	or if it does not exist, creates new contact list. */
-function loadContacts () {
+function loadContacts() {
 	var stuff = JSON.parse(localStorage.getItem("contacts"));
 	// make sure not null, if no contacts
 	// if null
 	var starter_pack = {contact_info: 
-		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", display:0},
-		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", display:0},
-		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", display:0}
+		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", show:1},
+		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", show:1},
+		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", show:1}
 		]}
 	return stuff ? stuff : starter_pack
 }
@@ -246,34 +246,8 @@ function getStringHeader () {
 	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">'
 	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
 	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
-	html += '<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>'
 	html += '</div>'
 	return html
-}
-
-
-//NOTE : to get all messages chronologically, just go in order of incr id num
-// getting all messages by person (thread) would require also adding to a separate
-// database, indexed by "whom", perhaps with a hash value for each new person...algorithmically more complex!!
-
-/* makes sure the functionality pages are properly linked from zoommed page */
-function updateFunctionPages (id) {
-	var calling_label = "Calling " + contacts.contact_info[id].name;
-	var zoompage = "#zoomcontact" + id;
-	var html = '<img src="' + contacts.contact_info[id].photo_file_path
-	html += '" style="width: 80%" align="middle">'
-	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
-	var message_html = '<h2>To: ' + contacts.contact_info[id].name + '</h2>'
-	var on_send = '<a href="#sent" onclick="textMessage(' + id +')" class="ui-btn">Send</a>'
-	$("#messageto").html(message_html);
-	$(".who_calling").html(calling_label);
-	$(".call_image").html(html);
-	$(".endCall").attr("href",zoompage);
-	$("#backto").attr("href", zoompage);
-	$("#send_btn").html(on_send);
-	$("#backto").attr("href", zoompage);
-	clearMessageFields();
-	// update message linking pages
 }
 
 
@@ -283,20 +257,25 @@ function getContactListHTML (id) {
 	html += '<h2 class="contact-list-name">' + contacts.contact_info[id].name + '</h2>'
 	html += '<li class="ui-li-has-thumb ui-first-child">'
 	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
-	html += '<a class="bigiconfont" href="#zoomcontact' + id +  '" onclick="updateFunctionPages(' + id + ')">'
+	html += '<a class="bigiconfont" href="#zoomcontact' + id +  '">'
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
-	html += '<div class="ui-btn" onclick="deleteContact(id)">Delete</div>'
+	html += '<div class="meep">View</div>'
 	html += '</a></li>'
 	//$("#contact_list").append(html);
 	return html;
-
 }
 
 
-function deleteContact(id){
+/*function deleteContact(id){
 	var p = id.parentNode;
 	p.parentNode.removeChild(p);
 	saveContacts();
+}*/
+function deleteContact(id) {
+	contacts.contact_info[id].show = 0;
+	saveContacts();
+	initializeSimpl();
+	$("#contact_list").listview('refresh');
 }
 
 
@@ -307,14 +286,15 @@ function getZoomPageHTML(id) {
 	zoomhtml += getStringHeader();
 	zoomhtml += '<div class="zoom_profile" data-role="content">'
 	zoomhtml += '<div class="zoom_heading" data-role="header"><center><h2><b>' + contacts.contact_info[id].name + '</b></h2></center></div>'
+	zoomhtml += '<div class="zoom_heading"><center><h2>' + contacts.contact_info[id].relation + '</div></h2></center>'
 	zoomhtml += '<div><center><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 70%;"></center></div>'
 	zoomhtml += '<ui data-role="listview">'
-	zoomhtml += '<li><a href="#call" onclick="callClockVoice()" class="bigiconfont ui-btn ui-icon-phone ui-btn-icon-left"><h2><b>Call</b></h2></a></li>'
-	zoomhtml += '<li><a href="#video" onclick="callClock1()" class="bigiconfont ui-btn ui-icon-video ui-btn-icon-left"><h2><b>Video Call</b></h2></a></li>'
-	zoomhtml += '<li><a href="#message" onclick="clearMessageFields()" class="bigiconfont ui-btn ui-icon-mail ui-btn-icon-left"><h2><b>Message</b></h2></a></li>'
-	zoomhtml += '</ui></div></div>'
+	zoomhtml += '<li><h2>Phone Number: ' + contacts.contact_info[id].phone_num + '</h2></li>'
+	zoomhtml += '<li><h2>Email Address: ' + contacts.contact_info[id].email_addr + '</h2></li>'
+	zoomhtml += '</ui></div>'
+	zoomhtml += '<div class="delete-btn"><a href="#home" onClick="deleteContact(' + id + ')" data-role="button" class="delete-btn" style="background-color: red; color: black; text-decoration: none;">Delete Contact</a></div>'
+	zoomhtml += '</div>'
 	return zoomhtml;
-	//$("body").append(zoomhtml);
 }
 
 
@@ -324,13 +304,11 @@ function initializeSimpl () {
 	var html = "";
 	var zoomhtml = "";
 
-	html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
-
 	for (var i = 0; i < contacts.contact_info.length; i++) {
-		html += getContactListHTML(i);
-		zoomhtml += getZoomPageHTML(i);
-		// if (contacts.contact_info.display[i]) 
-			// display phone/video? this may be for way later
+		if (contacts.contact_info[i].show) {
+			html += getContactListHTML(i);
+			zoomhtml += getZoomPageHTML(i)
+		}
 	}
 	$("#contact_list").html(html);
 	$("body").append(zoomhtml);
@@ -343,9 +321,7 @@ $(function() {
 	contacts = loadContacts();
 	messages = loadMessages();
 
-	builtInClock1 = 0;
-	// is this necessary? why getting initialization error?!?! refresh on listview...
 	$(document).ready (function () {
-		initializeSimpl();
-		renderInbox() });
+		initializeSimpl()
+	});
 });

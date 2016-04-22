@@ -9,7 +9,7 @@
 function addContact (name, photo_file_path, relation, phone_num, email_addr, display) {
 	var id_num = contacts.contact_info.length;
 	contacts.contact_info.push({id: id_num, name: name, photo_file_path: photo_file_path, 
-		relation: relation, phone_num: phone_num, email_addr: email_addr, display: display});
+		relation: relation, phone_num: phone_num, email_addr: email_addr, show: display});
 
 	saveContacts();
 
@@ -88,7 +88,7 @@ function formatPhoneNumber (num) {
 function userAddContact () {
 	var name = $("#new_name_field").val();
 	var phone_num = formatPhoneNumber($("#add_contact_number").val());
-	var email_addr = $("#new_email_field");
+	var email_addr = $("#new_email_field").val();
 	// handle no relation being selected
 	var relation = $('input[name=radio-choice-h-2]:checked').val()
 	if (!relation) {
@@ -135,9 +135,9 @@ function loadContacts () {
 	// make sure not null, if no contacts
 	// if null
 	var starter_pack = {contact_info: 
-		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", display:0},
-		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", display:0},
-		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", display:0}
+		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", show:1},
+		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", show:1},
+		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", show:1}
 		]}
 	return stuff ? stuff : starter_pack
 }
@@ -320,7 +320,7 @@ function renderInbox() {
 		html +='<div class="msg-date">' + date_time + '</div>'
 		html += '<li><img src="' + img_path + '">'
 		
-		html += '<div class="message-btn"><a href="#view_message" onclick="viewMessage(' + i + ')" style="color: black; text-decoration: none;" >View Message</a></div></li>'
+		html += '<div class="message-btn"><a href="#view_message" class="message-btn" onclick="viewMessage(' + i + ')" style="color: black; text-decoration: none;" >View Message</a></div></li>'
 	}
 	$("#message_list").html(html);
 	$("#message_list").listview('refresh');
@@ -411,13 +411,8 @@ function getContactListHTML (id) {
 	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
 	html += '<a class="bigiconfont" href="#zoomcontact' + id +  '" onclick="updateFunctionPages(' + id + ')">'
 	html += '<img src=' + contacts.contact_info[id].photo_file_path + ' />'
-	//html += '<h1 class="bigiconfont">' + contacts.contact_info[id].name + '</h1>'
-//	html += '<h3>' + contacts.contact_info[id].relation + '</h3>' // maybe take this out if needbe, or add a condition/make it optional
 	html += '<div class="meep">View</div>' 
-//	html += '<div class="ui-btn" onclick="deleteContact(id)">Delete</div>'
-
 	html += '</a></li>'
-	//$("#contact_list").append(html);
 	return html;
 
 }
@@ -492,8 +487,10 @@ function initializeSimpl () {
 	html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {
-		html += getContactListHTML(i);
-		zoomhtml += getZoomPageHTML(i);
+		if (contacts.contact_info[i].show) {
+			html += getContactListHTML(i);
+			zoomhtml += getZoomPageHTML(i)
+		}
 		// if (contacts.contact_info.display[i]) 
 			// display phone/video? this may be for way later
 	}

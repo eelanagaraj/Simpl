@@ -222,7 +222,7 @@ function stringOneShorter (str) {
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~FORM VALIDATION, SETTINGS~~~~~~~~~ */
+/* ~~~~~~~FORM VALIDATION, SETTINGS~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 function updateSettings () {

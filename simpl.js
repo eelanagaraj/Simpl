@@ -485,7 +485,7 @@ function initializeSimpl () {
 	var zoomhtml = "";
 
 	// for testing only!! -->
-	html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
+	//html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
 	// if advanced settings
 	if (contacts.settings) {
 		html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact </a></li>'
@@ -514,5 +514,5 @@ $(function() {
 	// is this necessary? why getting initialization error?!?! refresh on listview...
 	$(document).ready (function () {
 		initializeSimpl();
-		renderInbox() });
+		renderInbox()});
 });

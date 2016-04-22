@@ -208,8 +208,11 @@ function loadMessages () {
 	var stuff = JSON.parse(localStorage.getItem("messages"));
 	// make sure not null, and if so create new threads
 	var starter_pack = testerMessages()
-
-	return stuff ? stuff : {sent: [], received: starter_pack}
+	var now1 = (new Date ()).toDateString();
+	var now2 = (new Date ()).toDateString();
+	var text = "lalalalallaal allalalalalalala"
+	var sent_mssg = [{message_s_id: 0, date_time: now2, to:1, content: text}, {messge_s_id:1, date_time: now1, to: 0, content: text}]
+	return stuff ? stuff : {sent: sent_mssg, received: starter_pack}
 }
 
 

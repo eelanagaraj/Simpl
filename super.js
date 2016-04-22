@@ -286,12 +286,12 @@ function getZoomPageHTML(id) {
 	zoomhtml += getStringHeader();
 	zoomhtml += '<div class="zoom_profile" data-role="content">'
 	zoomhtml += '<div class="zoom_heading" data-role="header"><center><h2><b>' + contacts.contact_info[id].name + '</b></h2></center></div>'
-	zoomhtml += '<div class="zoom_heading"><center><h2>' + contacts.contact_info[id].relation + '</div></h2></center>'
-	zoomhtml += '<div><center><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 70%;"></center></div>'
-	zoomhtml += '<ui data-role="listview">'
-	zoomhtml += '<li><h2>Phone Number: ' + contacts.contact_info[id].phone_num + '</h2></li>'
-	zoomhtml += '<li><h2>Email Address: ' + contacts.contact_info[id].email_addr + '</h2></li>'
-	zoomhtml += '</ui></div>'
+	zoomhtml += '<div class="zoom_heading"><center><h3>' + contacts.contact_info[id].relation + '</div></h3></center>'
+	zoomhtml += '<div><center><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 50%;"></center></div>'
+	//zoomhtml += '<ui data-role="listview">'
+	zoomhtml += '<h3>Phone Number: ' + contacts.contact_info[id].phone_num + '</h3>'
+	zoomhtml += '<h3>Email Address: ' + contacts.contact_info[id].email_addr + '</h3>'
+	zoomhtml += '</div>'
 	zoomhtml += '<div class="delete-btn"><a href="#home" onClick="deleteContact(' + id + ')" data-role="button" class="delete-btn" style="background-color: red; color: black; text-decoration: none;">Delete Contact</a></div>'
 	zoomhtml += '</div>'
 	return zoomhtml;

@@ -138,7 +138,7 @@ function loadContacts () {
 	var starter_pack = {contact_info: 
 		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", show:1},
 		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", show:1},
-		 {id: 2, name: "Bowen Guo", photo_file_path:"images/bowen.png", relation: "Grandson", phone_num:"8574988899", email_addr:"bog13@gmail.com", show:1}
+		 {id: 2, name: "Bob Smith", photo_file_path:"images/man.png", relation: "Friend", phone_num:"193128124", email_addr:"bob@gmail.com", show:1}
 		], settings:0}
 	return stuff ? stuff : starter_pack
 }
@@ -339,7 +339,7 @@ function viewMessage (message_id) {
 	var	html = '<div><h2><b>From: ' + name + '</b></h2>'
 	html += '<h3>Date: ' + date + '</h3></div>'
 	html += '<div class="msg-date">' + message_content + '</div>'
-	html += '<div class="reply-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button" class="a-btn" style="color: black; text-decoration: none;">Reply</a></div>'
+	html += '<div class="message-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button" class="a-btn" style="color: black; text-decoration: none;">Reply</a></div>'
 	$("#message_display").html(html)
 	messages.received[message_id].read = true;
 	renderInbox();
@@ -375,7 +375,7 @@ function renderSentMail () {
 		html +='<div class="msg-date">' + date_time + '</div>'
 		html += '<li><img src="' + img_path + '">'
 
-		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button" style="text-decoration:none; color:black;">View Message</a></div></li>'
+		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button" class="msg-btn" style="text-decoration:none; color:black;">View Message</a></div></li>'
 	}
 	$("#sent_message_list").html(html);
 	$("#sent_message_list").listview('refresh');

@@ -157,6 +157,10 @@ img {
     text-decoration: none;
     color: black;
     background-color: #99ddff;
+    margin-top:-5px;
+    margin-bottom:-5px;
+    margin-left: -30px;
+    margin-right: -30px;
 }
 
 .message-btn {
@@ -226,6 +230,8 @@ img {
 .contact-list-name {
     font:bold;
     border-top: 2px black solid;
+    margin-top: 40px;
+    font: 20px;
 
 }
 

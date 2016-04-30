@@ -16,7 +16,7 @@
 
 <div data-role="page" id="main">
 	<div data-role="header">
-		<h1><b>SIMPL</b></h1>
+		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
 	<center><h3>Settings</h3></center>
 <br />
@@ -67,7 +67,7 @@
 <div data-role="page" id="home">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
 		<a class="secret-btn" href="#contact_popup" data-transition="pop" data-rel="dialog"></a>
-		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+		<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div data-role="content">
@@ -83,20 +83,20 @@
 
 <div data-role="page" id="contact_popup" style="dialog" data-close-btn="none">
 	<div data-form = "ui-bar-a" data-role = "header" role= "banner">
-		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> Contact Request </h1>
+		<hi class="ui-title" id="contact_req" tabindex = "0" role="heading" aria-level = "1">Contact Request</h1>
 	</div> 
 	<div id="new_contact_info">
 		<ul>
 			<h2><p id="popup_name">Bowen Guo</p></h2>
 			<h3><p id="popup_relation">Friend</p></h3>
-			<p> <img src="images/bowen.png" alt="profile picture" id="popup_photo" style="width: 70%;"></p>
+			<p> <img src="images/bowen.png" alt="profile picture" id="popup_photo" style="width: 85%;"></p>
 			<h4><p id="popup_number">Phone Number: (857) 498 - 8899</p></h4>
 			<h4><p id="popup_email">Email: bog13@gmail.com</p></h4>
 		</ul>
 	</div>
-	<div>
-		<a href="#home" class="boldyes button-left ui-shadow" data-role="button" ontap="popupAddContact()" onvclick="popupAddContact()" onclick="popupAddContact()">Add</a>
-		<a href="#home" class="boldno button-right ui-shadow" data-role="button">Deny</a>
+	<div class="ui-grid-a">
+		<a href="#home" class="boldyes ui-block-a button-left ui-shadow" data-inline="true" data-role="button" ontap="popupAddContact()" onvclick="popupAddContact()" onclick="popupAddContact()">Add</a>
+		<a href="#home" class="boldno ui-block-b button-right ui-shadow" data-inline="true" data-role="button">Deny</a>
 	</div>
 </div>
  
@@ -104,7 +104,7 @@
 <div data-role="page" id="inbox">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div id="message_container" class="content">
@@ -125,13 +125,13 @@
 <div data-role="page" id="inbox_received">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div id="sent_message_container" class="content">
 		<div data-role="navbar">
 			<ul>
-				<li><a class="inbox-btn" href="#inbox">Received</a></li>
+				<li><a class="inbox-btn" onclick="renderInbox()" href="#inbox">Received</a></li>
 				<li><a class="inbox-btn ui-btn-active ui-state-persist ui-shadow">Sent</a></li>
 			</ul>
 		</div>
@@ -147,7 +147,7 @@
 <div data-role="page" id="view_message">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div id="message_display" data-role="content">
@@ -169,7 +169,7 @@
 <div data-role="page" id="message">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div>
@@ -187,11 +187,11 @@
 <div data-role="page" id="sent">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
 		<a href="#home" class= "endCall ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>
-		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	 <div>
-	 <label for="basic"><b>Sent!</b></label>
+	 <label for="basic"><h1><center>Sent!</center></h1></label>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
 			<input disabled="disabled" name="name" id="sent_text" value="words words words">
 		</div>
@@ -201,7 +201,7 @@
 <div data-role="page" id="add_contact">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 
@@ -220,7 +220,7 @@
 <div data-role="page" id="add_contact_2">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 
@@ -261,7 +261,7 @@
 <div data-role="page" id="add_contact_3">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 
@@ -294,7 +294,7 @@
 <div data-role="page" id="call">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 
@@ -320,7 +320,7 @@
 <div data-role="page" id="video">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 	<!--	<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a> -->
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 
@@ -347,7 +347,7 @@
 
 <div data-role="page" id="web_user_interface">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-rel="back">
-		<hi class = "ui-title ui-bar-a" tabindex = "0" data-role="button"role="heading" aria-level = "1">SIMPL </h1>
+		<hi class = "ui-title ui-bar-a simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1">SIMPL </h1>
 	</div>
 
 	<div data-role="content">

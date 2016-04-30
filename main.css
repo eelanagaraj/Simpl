@@ -178,7 +178,7 @@ img {
 }
 
 .secret-btn {
-    background: transparent;
+    background-color: rgb(233, 233, 233) !important;
     border: none !important;
     font-size:0px;
     width: 1px;
@@ -245,19 +245,29 @@ img {
 }
 
 .boldyes {
-    background-color: #66FF00;
+    background-color: rgba(102, 255, 0, 0.71) !important;
     font-weight: bold;
     font-size: 20px;
+    padding: 1em !important;
 }
 
 .boldno {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.41) !important;
     font-weight: bold;
     font-size: 20px;
+    padding: 1em !important;
 }
 
 
+.simpl_header {
+    font-size: 1.2em !important;
+}
 
+#contact_req {
+    font-size: 1.5em !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
 
 
 

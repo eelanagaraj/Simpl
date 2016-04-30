@@ -250,6 +250,7 @@ function addMessage (sent, whom, text) {
 		id_num = messages.received.length;
 		messages.received.push({message_r_id: id_num, date_time: now, read: false, from: whom, content: text});
 	}
+	saveMessages();
 }
 
 
@@ -292,7 +293,7 @@ function getStringHeader () {
 	var html = ""
 	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">'
 	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
-	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
+	html += '<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
 	html += '<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>'
 	html += '</div>'
 	return html
@@ -307,7 +308,7 @@ function renderInbox() {
 	var date_time;
 	var img_path;
 	var is_read;
-	for (var i = 0; i < messages.received.length; i++) {
+	for (var i = messages.sent.length - 1; i >= 0; i--) {
 		id_num = messages.received[i].from;
 		name = contacts.contact_info[id_num].name;
 		img_path = contacts.contact_info[id_num].photo_file_path;
@@ -339,7 +340,7 @@ function viewMessage (message_id) {
 	var	html = '<div><h2><b>From: ' + name + '</b></h2>'
 	html += '<h3>Date: ' + date + '</h3></div>'
 	html += '<div class="msg-date">' + message_content + '</div>'
-	html += '<div class="message-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" data-role="button" class="a-btn" style="color: black; text-decoration: none;">Reply</a></div>'
+	html += '<div class="message-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" class="message-btn" style="color: black; text-decoration: none;">Reply</a></div>'
 	$("#message_display").html(html)
 	messages.received[message_id].read = true;
 	renderInbox();
@@ -365,7 +366,7 @@ function renderSentMail () {
 	var date_time;
 	var img_path;
 	var is_read;
-	for (var i = 0; i < messages.sent.length; i++) {
+	for (var i = messages.sent.length - 1; i >= 0; i--) {
 		id_to = messages.sent[i].to;
 		name = contacts.contact_info[id_to].name;
 		img_path = contacts.contact_info[id_to].photo_file_path;
@@ -375,7 +376,7 @@ function renderSentMail () {
 		html +='<div class="msg-date">' + date_time + '</div>'
 		html += '<li><img src="' + img_path + '">'
 
-		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" data-role="button" class="msg-btn" style="text-decoration:none; color:black;">View Message</a></div></li>'
+		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" class="message-btn" style="text-decoration:none; color:black;">View Message</a></div></li>'
 	}
 	$("#sent_message_list").html(html);
 	$("#sent_message_list").listview('refresh');

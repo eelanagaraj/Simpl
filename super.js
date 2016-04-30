@@ -22,9 +22,6 @@ function addContact (name, photo_file_path, relation, phone_num, email_addr, dis
 }
 
 
-// for web app --> create web_app page; have that page allow user to fill in fields, "FB verify" and then sends popup request which will show up 
-
-
 /* turns number of format (###) ### - #### to 
 	#########, code from StackOverflow (see acknowledgements) */
 function stringToNum (stuff){
@@ -234,12 +231,14 @@ function updateSettings () {
 
 //TODO
 
-// WEB INTERFACE VALIDATION
-
-// SUPER USER VALIDATION 
-
-
-// SETTING 2 ADD CONTACT VALIDATION
+/* function to display user's name*/
+function customizeName (prof_name) {
+	custom_settings_header = prof_name + "'s Settings";
+	custom_list_header = prof_name + "'s Contacts";
+	$("#custom_username").html(custom_settings_header);
+	$("#custom_name_settings").html(custom_settings_header);
+	$("#custom_contact_list").html(custom_list_header);
+}
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -252,7 +251,7 @@ function getStringHeader () {
 	var html = ""
 	html += '<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">'
 	html += '<a href="#home" class= "ui-btn-left ui-btn-corner-all ui-btn ui-icon-back ui-btn-icon-notext ui-shadow" title="Back" data-form = "ui-icon" data-role= "button" role= "button"></a>'
-	html += '<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
+	html += '<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"><a href="#home">SIMPL</a></h1>'
 	html += '</div>'
 	return html
 }

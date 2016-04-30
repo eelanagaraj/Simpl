@@ -17,7 +17,7 @@
 
 <div data-role = "page" id= "begin">
 	<div data-role="header">
-		<h1><b>SIMPL</b></h1>
+		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
 	<center><h3>Welcome! </h3></center>
 	<a href = "#login" class = "ui-btn">Log in</a>
@@ -27,7 +27,7 @@
 
 <div data-role="page" id="login">
 	<div data-role="header">
-		<h1><b>SIMPL</b></h1>
+		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
 	<h3><center>Login to Superuser Account</center></h3>
 	<div class="ui-field-contain">
@@ -41,14 +41,14 @@
 		</div>
 
 	</div>
-	<a href="#home" button class="ui-btn">Login</a>
+	<a href="#manage_accounts" button class="ui-btn">Login</a>
 </div>
 
 <div data-role="page" id="new">
 
  <div data-role="header">
 	<div data-role="header">
-		<h1><b>SIMPL</b></h1>
+		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
 </div>
  <div data-role="navbar">
@@ -79,7 +79,7 @@
  	 </div>
  </div>
 
-  <a href="#main" button class = "ui-btn"> Add SuperUser </a>
+  <a href="#manage_accounts" button class = "ui-btn"> Add SuperUser </a>
 
 </div>
 
@@ -93,23 +93,24 @@
 		</ul>
 	</div>
 	<div>
-		<a href="#home" class="button-right ui-shadow" data-role="button">Ok</a>
+		<a href="#new" class="button-right ui-shadow" data-role="button">Ok</a>
 	</div>
 </div>
 
 
 <div data-role = "page" id= "main">
 	<div data-role="header">
-		<h1><b>SIMPL</b></h1>
+		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
-	<center><h3>Add Contacts Settings</h3></center>
+	<center><h3 id="custom_name_settings">Joe Smith's Settings</h3></center>
 	<div class="ui-controlgroup-controls">
+		<center><h4>Option for user to input contacts?</h4></center>
 		<div class="ui-radio">
-			<label for="radio-view-a-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-first-child ui-btn-active ui-radio-on">Simple Contacts</label>
+			<label for="radio-view-a-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-first-child ui-btn-active ui-radio-on">No! The user will only receive contact requests, because inputting contact information may be too complex for this user.</label>
 			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-a-a" onchange="updateSettings()" value="list" checked="checked" data-cacheval="false">
 		</div>
 		<div class="ui-radio">
-			<label for="radio-view-b-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-last-child ui-btn-active ui-radio-on">Advanced Contacts</label>
+			<label for="radio-view-b-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-last-child ui-btn-active ui-radio-on">Yes! the user will be able to input new contacts, including typing their names, phone numbers, and uploading pictures. </label>
 			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-b-a" onchange="updateSettings()" value="list" data-cacheval="false">
 		</div>
 	</div>
@@ -118,16 +119,32 @@
 	</div>
 </div>
 
+
+<div data-role = "page" id= "manage_accounts">
+	<div data-role="header">
+		<h1 class="simpl_header"><b>SIMPL</b></h1>
+	</div>
+	<center><h3>Manage Accounts</h3></center>
+	<div data-role="content">
+		<a href="#home" onClick="customizeName('Bob Smith')" class="ui-btn">Bob Smith</a>
+		<a href="#home" onClick="customizeName('Grandma Jane')" class="ui-btn">Grandma Jane</a>
+		<a href="#home" onClick="customizeName('Joe Smith')" class="ui-btn">Joe Smith</a>
+	</div>
+</div>
+
+
 <div data-role="page" id="home">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
 
-		<hi href="#home" class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+		<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
 	</div> 
 	<div data-role="content">
-		<a href="#main" class="ui-btn">User's Settings</a>
+		<a href="#manage_accounts" class="ui-btn">Switch to Another Account</a>
+		<a href="#main" id="custom_username"class="ui-btn">Joe Smith's Settings</a>
 		<a href="#add_contact" class="ui-btn">Add Contact</a>
 		<div>
 			<article data-role="content">
+				<center><h2 id="custom_contact_list">Joe Smith's Contacts</h2></center>
 				<ul data-role="listview" data-theme="c" id="contact_list">        
 				</ul> 
 			</article>
@@ -139,7 +156,7 @@
 <div data-role="page" id="add_contact">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 	</div> 
 
 	<h1><b>Add Contact</b></h1>
@@ -156,7 +173,7 @@
 <div data-role="page" id="add_contact_2">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 	</div> 
 
 	<label for="basic"><h1>Enter Number:</h1></label>
@@ -196,7 +213,7 @@
 <div data-role="page" id="add_contact_3">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-add-back-btn="true" data-rel="back">
 
-		<hi class = "ui-title" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
+		<hi class = "ui-title simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1"><a href="#home">SIMPL </a></h1>
 	</div> 
 
 	<label for="basic"><h1>Enter Email:</h1></label>
@@ -226,7 +243,7 @@
 
 <div data-role="page" id="web_user_interface">
 	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner" data-rel="back">
-		<hi class = "ui-title ui-bar-a" tabindex = "0" data-role="button"role="heading" aria-level = "1">SIMPL </h1>
+		<hi class = "ui-title ui-bar-a simpl_header" tabindex = "0" data-role="button"role="heading" aria-level = "1">SIMPL </h1>
 	</div>
 
 	<div data-role="content">

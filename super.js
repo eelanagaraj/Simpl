@@ -17,7 +17,7 @@ function addContact (name, photo_file_path, relation, phone_num, email_addr, dis
 	var html = getContactListHTML(id_num);
 	var zoomhtml = getZoomPageHTML(id_num);
 	$("#contact_list").append(html);
-	$("#contact_list").listview('refresh');
+	$("#contact_list").listview().listview('refresh');
 	$("body").append(zoomhtml);
 }
 
@@ -226,7 +226,8 @@ function updateSettings () {
 	comfort_level = parseInt($('input[name=radio-view-a]:checked').val());
 	contacts.settings = comfort_level;
 	initializeSimpl();
-	$("#contact_list").listview('refresh');
+	$("#contact_list").listview().listview('refresh');
+	saveContacts();
 }
 
 //TODO
@@ -281,7 +282,7 @@ function deleteContact(id) {
 	contacts.contact_info[id].show = 0;
 	saveContacts();
 	initializeSimpl();
-	$("#contact_list").listview('refresh');
+	$("#contact_list").listview().listview('refresh');
 }
 
 

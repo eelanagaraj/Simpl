@@ -78,6 +78,7 @@ fieldset {
 
 textarea {
     resize: vertical;
+    font-size: 24px;
 }
 
 /* ==========================================================================
@@ -118,6 +119,17 @@ img {
 
 }
 
+.addcontact {
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 30px !important;
+    background-color: #99ddff !important;
+    border-radius: 10px;
+    border: 10px !important;
+
+}
+
 .from-name {
     font-size: 22px;
     color: black;
@@ -126,16 +138,13 @@ img {
 
 .reply-btn {
     position: relative;
-    width: 90%;
+    text-align: center;
     text-decoration: none;
-    font-size: 30px;
-    background-color: #99ddff;
+    font-size: 30px !important;
+    background-color: #99ddff !important;
     border-radius: 10px;
     border: 10px;
-    color: black;
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
+    color: black !important;
 }
 
 .delete-btn {
@@ -170,11 +179,11 @@ img {
     line-height: 60px;
     text-align: center;
     text-decoration: none;
-    font-size: 30px;
-    background-color: #99ddff;
+    font-size: 30px !important;
+    background-color: #99ddff !important;
     border-radius: 10px;
     border: 10px;
-    color: black;
+    color: black !important;
 }
 
 .secret-btn {
@@ -260,7 +269,7 @@ img {
 
 
 .simpl_header {
-    font-size: 1.2em !important;
+    font-size: 1.5em !important;
 }
 
 #contact_req {
@@ -269,6 +278,12 @@ img {
     overflow: visible !important;
 }
 
+.ui-btn.my-tooltip-btn,
+.ui-btn.my-tooltip-btn:hover,
+.ui-btn.my-tooltip-btn:active {
+    background: none;
+    border: 0;
+}
 
 
 /* ==========================================================================

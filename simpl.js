@@ -17,7 +17,7 @@ function addContact (name, photo_file_path, relation, phone_num, email_addr, dis
 	var html = getContactListHTML(id_num);
 	var zoomhtml = getZoomPageHTML(id_num);
 	$("#contact_list").append(html);
-	$("#contact_list").listview('refresh');
+	$("#contact_list").listview().listview('refresh');
 	$("body").append(zoomhtml);
 }
 
@@ -278,7 +278,7 @@ function updateSettings () {
 	comfort_level = parseInt($('input[name=radio-view-a]:checked').val());
 	contacts.settings = comfort_level;
 	initializeSimpl();
-	$("#contact_list").listview('refresh');
+	$("#contact_list").listview().listview('refresh');
 }
 
 
@@ -327,7 +327,7 @@ function renderInbox() {
 		html += '<div class="message-btn"><a href="#view_message" class="message-btn" onclick="viewMessage(' + i + ')" style="color: black; text-decoration: none;" >View Message</a></div></li>'
 	}
 	$("#message_list").html(html);
-	$("#message_list").listview('refresh');
+	$("#message_list").listview().listview('refresh');
 }
 
 
@@ -340,7 +340,7 @@ function viewMessage (message_id) {
 	var	html = '<div><h2><b>From: ' + name + '</b></h2>'
 	html += '<h3>Date: ' + date + '</h3></div>'
 	html += '<div class="msg-date">' + message_content + '</div>'
-	html += '<div class="message-btn"><a href="#message" onClick="updateFunctionPages(' + id + ')" class="message-btn" style="color: black; text-decoration: none;">Reply</a></div>'
+	html += '<div><a href="#message" onClick="updateFunctionPages(' + id + ')" class="reply-btn ui-btn" style="color: black; text-decoration: none;">Reply</a></div>'
 	$("#message_display").html(html)
 	messages.received[message_id].read = true;
 	renderInbox();
@@ -379,7 +379,7 @@ function renderSentMail () {
 		html += '<div class="message-btn"><a href="#view_message" onclick="viewSent(' + i + ')" class="message-btn" style="text-decoration:none; color:black;">View Message</a></div></li>'
 	}
 	$("#sent_message_list").html(html);
-	$("#sent_message_list").listview('refresh');
+	$("#sent_message_list").listview().listview('refresh');
 }
 
 //NOTE : to get all messages chronologically, just go in order of incr id num
@@ -393,8 +393,8 @@ function updateFunctionPages (id) {
 	var html = '<img src="' + contacts.contact_info[id].photo_file_path
 	html += '" style="width: 80%" align="middle">'
 	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
-	var message_html = '<h2>To: ' + contacts.contact_info[id].name + '</h2>'
-	var on_send = '<a href="#sent" onclick="textMessage(' + id +')" class="ui-btn">Send</a>'
+	var message_html = '<h1>To: ' + contacts.contact_info[id].name + '</h1>'
+	var on_send = '<a href="#sent" onclick="textMessage(' + id +')" class="ui-btn reply-btn">Send</a>'
 	$("#messageto").html(message_html);
 	$(".who_calling").html(calling_label);
 	$(".call_image").html(html);
@@ -484,12 +484,12 @@ function getZoomPageHTML(id) {
 function initializeSimpl () {
 	var html = "";
 	var zoomhtml = "";
-
 	// for testing only!! -->
 	//html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
 	// if advanced settings
 	if (contacts.settings) {
-		html += '<li><a href="#add_contact" onclick="clearAddContactFields()"> Add Contact </a></li>'
+		var addcontact_html = '<a href="#add_contact" class="ui-btn addcontact" onclick="clearAddContactFields()">Add Contact</a>'
+		$("#addcontact_option").append(addcontact_html);
 	}
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {

@@ -102,23 +102,32 @@
 	<div data-role="header">
 		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
-	<center><h3 id="custom_name_settings">Joe Smith's Settings</h3></center>
+	<center><h1 id="custom_name_settings">Joe Smith's Settings</h1></center>
 	<div class="ui-controlgroup-controls">
-		<center><h4>Option for user to input contacts?</h4></center>
+		<center><h2>Option for user to input contacts?
+			<a href="#simple_settings_popup" data-rel="popup" data-transition="pop" class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext">Learn more</a>
+			<div data-role="popup" id="simple_settings_popup" class="ui-content" data-theme="a" style="max-width:350px;">
+  				<p>Both settings allows users to receive contact requests. Choose "No!" if typing in contact information or uploading photos may be too complex for this user. Choose "Yes!" to allow the user to input new contacts themselves.</p>
+			</div>
+		</h2></center>
+		<br>
+
 		<div class="ui-radio">
-			<label for="radio-view-a-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-first-child ui-btn-active ui-radio-on">No! The user will only receive contact requests, because inputting contact information may be too complex for this user.</label>
-			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-a-a" onchange="updateSettings()" value="list" checked="checked" data-cacheval="false">
+			<label for="radio-view-a-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-first-child ui-btn-active ui-radio-on" style="font-size:20px;">No! Keep it simple!
+			</label>
+			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-a-a" onchange="updateSettings()" value="0" checked="checked" data-cacheval="false">
 		</div>
 		<div class="ui-radio">
-			<label for="radio-view-b-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-last-child ui-btn-active ui-radio-on">Yes! the user will be able to input new contacts, including typing their names, phone numbers, and uploading pictures. </label>
-			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-b-a" onchange="updateSettings()" value="list" data-cacheval="false">
+			<label for="radio-view-b-a" data-form= "ui-btn-up-a" class="ui-btn ui-corner-all ui-btn-a ui-last-child ui-btn-active ui-radio-on" style="font-size:20px;">Yes! Let them add contacts!
+			</label>
+			<input data-theme="a" type="radio" name="radio-view-a" id="radio-view-b-a" onchange="updateSettings()" value="1" data-cacheval="false">
 		</div>
 	</div>
 	<div>
 	 <a href="#home" class="ui-btn">Ok</a>
 	</div>
 </div>
-
+				
 
 <div data-role = "page" id= "manage_accounts">
 	<div data-role="header">

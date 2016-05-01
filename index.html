@@ -71,7 +71,8 @@
 		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
 	</div> 
 	<div data-role="content">
-		<center><h2><b>Your Contacts</b></h2></center>
+		<center id="addcontact_option"><h1><b>Your Contacts</b></h1>
+		</center>
 		<div>
 			<article data-role="content">
 				<ul data-role="listview" data-theme="c" id="contact_list">        
@@ -176,7 +177,7 @@
 		<label id="messageto"><h2>To: </h2></label>
 		<h2 for="basic">Your message:</h2>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
-			<input type="text" name="name" id="text_to_send" value="" placeholder=" Type Text Here">
+			<textarea name="name" id="text_to_send" value="" placeholder=" Type Text Here"></textarea>
 		</div>
 	</div>
 	<div id="send_btn">
@@ -193,7 +194,7 @@
 	 <div>
 	 <label for="basic"><h1><center>Sent!</center></h1></label>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
-			<input disabled="disabled" name="name" id="sent_text" value="words words words">
+			<textarea disabled="disabled" style="resize:none;" name="name" id="sent_text" value="words words words"></textarea>
 		</div>
 	</div>
 </div>
@@ -356,7 +357,8 @@
 	TODO: split into two screens: must validate who you are requesting first, then move on to entering your info; or other way around? -->
 
 
-	<form id="web_user_inputs" onsubmit="sendRequest()" ><center><h2>Send Contact Request</h2></center>
+	<form id="web_user_inputs" onsubmit="sendRequest()" >
+		<center><h2>Send Contact Request</h2></center>
 		<h4><b>Your Information:</b></h4>
 		<fieldset class="form-group">
 			<label for="input_name">Name</label>

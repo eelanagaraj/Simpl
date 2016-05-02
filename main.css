@@ -100,6 +100,10 @@ img {
     max-width: 100%;
 }
 
+input {
+    font-size: 24px;
+}
+
 .top-bord {
     border-top: 2px black solid;
 }
@@ -269,7 +273,7 @@ img {
 
 
 .simpl_header {
-    font-size: 1.5em !important;
+    font-size: 1.3em !important;
 }
 
 #contact_req {

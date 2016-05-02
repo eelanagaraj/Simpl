@@ -6,7 +6,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  
  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
- <link href="main.css" rel="stylesheet">
+ <link href="super_user_css.css" rel="stylesheet">
  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src= "super.js"></script>
@@ -20,9 +20,9 @@
 		<h1 class="simpl_header"><b>SIMPL</b></h1>
 	</div>
 	<center><h3>Welcome! </h3></center>
-	<a href = "#login" class = "ui-btn">Log in</a>
-	<a href="#new" class="ui-btn" >Register</a>
-	<a href="#web_user_interface" onclick="clearWebInterfaceFields()" class="ui-btn"> Remote Add Contact </a>
+	<a href = "#login" class = "ui-btn blue-btn">Log in</a>
+	<a href="#new" class="ui-btn blue-btn" >Register</a>
+	<a href="#web_user_interface" onclick="clearWebInterfaceFields()" class="ui-btn blue-btn"> Remote Add Contact </a>
 </div>
 
 <div data-role="page" id="login">
@@ -41,7 +41,7 @@
 		</div>
 
 	</div>
-	<a href="#manage_accounts" button class="ui-btn">Login</a>
+	<a href="#manage_accounts" button class="ui-btn blue-btn">Login</a>
 </div>
 
 <div data-role="page" id="new">
@@ -59,43 +59,42 @@
  <div class="ui-field-contain">
  	 <label for="basic">Name:</label>
  	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
-		<input type="text" name="name" id="basic" value>
+		<input type="text" oninput="activateFB()" name="name" id="new_su_name" value>
 	</div>
  	<label for="password">Password: </label>
  	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
- 		<input type="password" name="password" id="password" value>
+ 		<input type="password" oninput="activateFB()" name="password" id="new_su_password" value>
  	</div>
  	<label for="number">Telephone number </label>
  	<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
- 		<input type="number" name="number" id="number" value>
+ 		<input type="number" oninput="activateFB()" name="number" id="new_su_number" value>
  	</div>
  	<label for="email"> Email: </label>
  	 <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
- 	 	<input type= "email" name="email" id="email" value>
+ 	 	<input type= "email" oninput="activateFB()" name="email" id="new_su_email" value>
  	 </div>
  	  <div>
- 	 	<a href="#fbpop" data-transition="pop" class="ui-btn">Verify with Facebook</a>
-
- 	 </div>
+ 	 	<a data-transition="pop"  id="facebook_val_btn" data-rel="popup" class="ui-btn grayed-out">Verify with Facebook</a>
+ 	 	<div data-role="popup" id="fbpop" style="popup" data-close-btn="none">
+			<div data-form = "ui-bar-a" data-role = "header" role= "banner">
+			<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> Facebook </h1>
+		</div> 
+		<div id="facebook">
+			<ul>
+				<p> <img src="facebook.png" alt="FB" id="photo" style="width: 25%;"> Verified!</p>
+			</ul>
+		</div>
+		<div>
+			<a href="#new" class="button-right ui-btn ui-shadow blue-btn" data-role="button">Ok</a>
+		</div>
+	</div>
+ 	</div>
  </div>
 
-  <a href="#manage_accounts" button class = "ui-btn"> Add SuperUser </a>
+  <a id="add_super_btn" class="ui-btn grayed-out"> Add SuperUser </a>
 
 </div>
 
-<div data-role="page" id="fbpop" style="dialog" data-close-btn="none">
-	<div data-form = "ui-bar-a" data-role = "header" role= "banner">
-		<hi class = "ui-title" tabindex = "0" role="heading" aria-level = "1"> Register with Facebook </h1>
-	</div> 
-	<div id="facebook">
-		<ul>
-			<p> <img src="facebook.png" alt="FB" id="photo" style="width: 25%;"> Verified!</p>
-		</ul>
-	</div>
-	<div>
-		<a href="#new" class="button-right ui-shadow" data-role="button">Ok</a>
-	</div>
-</div>
 
 
 <div data-role = "page" id= "main">
@@ -148,9 +147,9 @@
 		<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
 	</div> 
 	<div data-role="content">
-		<a href="#manage_accounts" class="ui-btn">Switch to Another Account</a>
-		<a href="#main" id="custom_username"class="ui-btn">Joe Smith's Settings</a>
-		<a href="#add_contact" class="ui-btn">Add Contact</a>
+		<a href="#manage_accounts" style="background-color: #99ddff !important;" class="ui-btn">Switch to Another Account</a>
+		<a href="#main" style="background-color: #99ddff !important;" id="custom_username"class="ui-btn">Joe Smith's Settings</a>
+		<a href="#add_contact" style="background-color: #99ddff !important;" class="ui-btn">Add Contact</a>
 		<div>
 			<article data-role="content">
 				<center><h2 id="custom_contact_list">Joe Smith's Contacts</h2></center>
@@ -175,7 +174,7 @@
 				required
 				data-fv-notempty-message="Please enter name" />
 	<div>
-		<a href="#add_contact_2" data-role="button" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-input-btn ui-shadow" type="button" ><h1>Next</h1></a>
+		<a href="#add_contact_2" data-role="button" style="background-color: #99ddff !important;" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-input-btn ui-shadow" type="button" ><h1>Next</h1></a>
 	</div> 
 </div>
 
@@ -215,7 +214,7 @@
 	</form>
 
 	<div>
-		<a href="#add_contact_3" data-role="button" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-input-btn ui-shadow" type="button" ><h1>Next</h1></a>
+		<a href="#add_contact_3" data-role="button" style="background-color: #99ddff !important;"  class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-input-btn ui-shadow" type="button" ><h1>Next</h1></a>
 	</div> 
 </div>
 
@@ -230,7 +229,7 @@
 
 	<form>
 		<fieldset data-role="controlgroup" id="relation_input" data-type="horizontal">
-			<legend><h1>How are they related?</h1></legend>
+			<legend><h1>How are you related?</h1></legend>
 			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="Son">
 			<label for="radio-choice-h-2a">Son</label>
 			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="Daughter">
@@ -239,14 +238,18 @@
 			<label for="radio-choice-h-2c">Grandson</label>
 			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2d" value="Granddaughter">
 			<label for="radio-choice-h-2d">Granddaughter</label>
-			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2e" value="Friend">
-			<label for="radio-choice-h-2e">Friend</label>
-			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2f" value="In-law">
-			<label for="radio-choice-h-2f">In-law</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2e" value="Spouse">
+			<label for="radio-choice-h-2e">Spouse</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2f" value="Relative">
+			<label for="radio-choice-h-2f">Relative</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2g" value="In-law">
+			<label for="radio-choice-h-2g">In-law</label>
+			<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2h" value="Friend">
+			<label for="radio-choice-h-2h">Friend</label>
 		</fieldset>
 	</form>
 	<div>
-		<a href="#home" data-role="button" onclick="userAddContact()"><b>Add!</b></a>
+		<a href="#home" data-role="button" style="background-color: #99ddff !important;" onclick="userAddContact()"><b>Add!</b></a>
 	</div>
 </div>
 

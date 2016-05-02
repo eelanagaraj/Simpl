@@ -242,6 +242,19 @@ function customizeName (prof_name) {
 }
 
 
+function fbValidate() {
+	$("#add_super_btn").attr("href", "#manage_accounts");
+	$("#add_super_btn").attr("class", "ui-btn blue-btn");
+}
+
+function activateFB () {
+	if ($("#new_su_name").val() && $("#new_su_password").val() && $("#new_su_number").val() && $("#new_su_email").val()) {
+		$("#facebook_val_btn").attr("href", "#fbpop");
+		$("#facebook_val_btn").attr("class", "ui-btn blue-btn");
+		$("#facebook_val_btn").attr("onclick", "fbValidate()");
+	}
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~HTML PAGE RENDERING~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -296,7 +309,7 @@ function getZoomPageHTML(id) {
 	zoomhtml += '<div class="zoom_heading"><center><h3>' + contacts.contact_info[id].relation + '</div></h3></center>'
 	zoomhtml += '<div><center><img src=' + contacts.contact_info[id].photo_file_path + ' alt="profile picture" style="width: 50%;"></center></div>'
 	//zoomhtml += '<ui data-role="listview">'
-	zoomhtml += '<h3>Phone Number: ' + contacts.contact_info[id].phone_num + '</h3>'
+	zoomhtml += '<h3>Phone Number: ' + formatPhoneNumber(contacts.contact_info[id].phone_num)+ '</h3>'
 	zoomhtml += '<h3>Email Address: ' + contacts.contact_info[id].email_addr + '</h3>'
 	zoomhtml += '</div>'
 	zoomhtml += '<div class="delete-btn"><a href="#home" onClick="deleteContact(' + id + ')" data-role="button" class="delete-btn" style="background-color: red; color: black; text-decoration: none;">Delete Contact</a></div>'

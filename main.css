@@ -230,6 +230,10 @@ input {
     border-right-width: 0;
 }
 
+.blue-btn {
+    background-color: #99ddff !important;
+}
+
 .msg-name {
     font-size: 24px;
     font-weight: bold;

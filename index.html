@@ -13,6 +13,23 @@
 </head>
 
 <body> 
+<div data-role="page" id="home">
+	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
+		<a class="secret-btn" href="#contact_popup" data-transition="pop" data-rel="dialog"></a>
+		<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
+		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
+	</div> 
+	<div data-role="content">
+		<center id="addcontact_option"><h1><b>Your Contacts</b></h1>
+		</center>
+		<div>
+			<article data-role="content">
+				<ul data-role="listview" data-theme="c" id="contact_list">        
+				</ul> 
+			</article>
+		</div>
+	</div>
+</div>
 
 <div data-role="page" id="main">
 	<div data-role="header">
@@ -63,24 +80,6 @@
 	<a href="#home" button class="ui-btn blue-btn">Add Superuser</a>
 </div>
 
-
-<div data-role="page" id="home">
-	<div class ="ui-header ui-bar-a" data-swatch="a" data-theme="a" data-form = "ui-bar-a" data-role = "header" role= "banner">
-		<a class="secret-btn" href="#contact_popup" data-transition="pop" data-rel="dialog"></a>
-		<hi href="#home" class = "ui-title simpl_header" tabindex = "0" role="heading" aria-level = "1"> SIMPL </h1>
-		<a href="#inbox" class = "ui-btn-right ui-btn-corner-all ui-btn ui-icon-mail ui-btn-icon-notext ui-shadow" title="Inbox" data-form="ui-icon" data-role = "button" role= "button"></a>
-	</div> 
-	<div data-role="content">
-		<center id="addcontact_option"><h1><b>Your Contacts</b></h1>
-		</center>
-		<div>
-			<article data-role="content">
-				<ul data-role="listview" data-theme="c" id="contact_list">        
-				</ul> 
-			</article>
-		</div>
-	</div>
-</div>
 
 <div data-role="page" id="contact_popup" style="dialog" data-close-btn="none">
 	<div data-form = "ui-bar-a" data-role = "header" role= "banner">

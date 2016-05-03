@@ -484,12 +484,12 @@ function getZoomPageHTML(id) {
 function initializeSimpl () {
 	var html = "";
 	var zoomhtml = "";
+	var addcontact_html = "<h1><b>Your Contacts</b></h1>"
 	// for testing only!! -->
 	//html += '<li><a href="#web_user_interface" onclick="clearWebInterfaceFields()"> Younger User Web Interface </a></li>'
 	// if advanced settings
 	if (contacts.settings) {
-		var addcontact_html = '<a href="#add_contact" class="ui-btn addcontact" onclick="clearAddContactFields()">Add Contact</a>'
-		$("#addcontact_option").append(addcontact_html);
+		addcontact_html += '<a href="#add_contact" class="ui-btn addcontact" onclick="clearAddContactFields()">Add Contact</a>'
 	}
 
 	for (var i = 0; i < contacts.contact_info.length; i++) {
@@ -500,8 +500,10 @@ function initializeSimpl () {
 		// if (contacts.contact_info.display[i]) 
 			// display phone/video? this may be for way later
 	}
+	$("#addcontact_option").html(addcontact_html);
 	$("#contact_list").html(html);
 	$("body").append(zoomhtml);
+	$("#contact_list").listview().listview('refresh');
 }
 
 

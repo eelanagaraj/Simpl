@@ -21,7 +21,7 @@
 	<center><h3>Settings</h3></center>
 <br />
 	<div>
-		<a href="#superuser" class = "ui-btn">Add a Superuser </a>
+		<a href="#superuser" class = "ui-btn blue-btn">Add a Superuser </a>
 	</div>
 	<div class="ui-controlgroup-controls">
 		<div class="ui-radio" id="contact_settings">
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div>
-	 <a href="#home" class="ui-btn">Ok</a>
+	 <a href="#home" class="ui-btn blue-btn">Ok</a>
 	</div>
 </div>
 
@@ -60,7 +60,7 @@
 			<input type= "email" name="email" id="email" value>
 		</div>
 	</div>
-	<a href="#home" button class="ui-btn">Add Superuser</a>
+	<a href="#home" button class="ui-btn blue-btn">Add Superuser</a>
 </div>
 
 
@@ -111,7 +111,7 @@
 	<div id="message_container" class="content">
 		<div data-role="navbar">
 			<ul>
-				<li><a class="ui-btn-active">Received</a></li>
+				<li><a class="ui-btn-active ui-state-persist ui-shadow">Received</a></li>
 				<li><a href="#inbox_received" onclick="renderSentMail()">Sent</a></li>
 			</ul>
 		</div>
@@ -233,23 +233,23 @@
 			</tr>
 			<tr>
 				<td><input type=button value="1" class="numero" onclick="keypad.display.value+='1'" ontap="keypad.display.value+='1'"></td>
-				<td><input type=button value="2" onclick="keypad.display.value+='2'" ontap="keypad.display.value+='2'"></td>
-				<td><input type=button value="3" onclick="keypad.display.value+='3'" ontap="keypad.display.value+='3'"></td>
+				<td><input type=button value="2" class="num-btn" onclick="keypad.display.value+='2'" ontap="keypad.display.value+='2'"></td>
+				<td><input type=button value="3" class="num-btn" onclick="keypad.display.value+='3'" ontap="keypad.display.value+='3'"></td>
 			</tr>
 			<tr>
-				<td><input type=button value="4" onclick="keypad.display.value+='4'" ontap="keypad.display.value+='4'"></td>
-				<td><input type=button value="5" onclick="keypad.display.value+='5'" ontap="keypad.display.value+='5'"></td>
-				<td><input type=button value="6" onclick="keypad.display.value+='6'" ontap="keypad.display.value+='6'"></td>
+				<td><input type=button value="4" class="num-btn" onclick="keypad.display.value+='4'" ontap="keypad.display.value+='4'"></td>
+				<td><input type=button value="5" class="num-btn" onclick="keypad.display.value+='5'" ontap="keypad.display.value+='5'"></td>
+				<td><input type=button value="6" class="num-btn" onclick="keypad.display.value+='6'" ontap="keypad.display.value+='6'"></td>
 			</tr>
 			<tr>
-				<td><input type=button value="7" onclick="keypad.display.value+='7'" ontap="keypad.display.value+='7'"></td>
-				<td><input type=button value="8" onclick="keypad.display.value+='8'" ontap="keypad.display.value+='8'"></td>
-				<td><input type=button value="9" onclick="keypad.display.value+='9'" ontap="keypad.display.value+='9'"></td>
+				<td><input type=button value="7" class="num-btn" onclick="keypad.display.value+='7'" ontap="keypad.display.value+='7'"></td>
+				<td><input type=button value="8" class="num-btn" onclick="keypad.display.value+='8'" ontap="keypad.display.value+='8'"></td>
+				<td><input type=button value="9" class="num-btn" onclick="keypad.display.value+='9'" ontap="keypad.display.value+='9'"></td>
 			</tr>
 			<tr>
 				<td><a input type=button onclick="keypad.display.value=stringOneShorter(keypad.display.value)" class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-input-btn ui-shadow" type="button"></a></td>
-				<td><input type=button value="0" onclick="keypad.display.value+='0'" ontap="keypad.display.value+='0'" ></td>
-				<td><input type=button value="-" onclick="keypad.display.value+='-'" ontap="keypad.display.value+='-'" ></td>
+				<td><input type=button value="0" class="num-btn" onclick="keypad.display.value+='0'" ontap="keypad.display.value+='0'" ></td>
+				<td><input type=button value="-" class="num-btn" onclick="keypad.display.value+='-'" ontap="keypad.display.value+='-'" ></td>
 			</tr>
 		</table>
 	</form>
@@ -315,7 +315,7 @@
 	<footer data-role="footer" data-position="fixed">
 		<nav data-role="navbar">
 			<ul>
-				<li><a class="endCall" href="#zoomcontact1" data-theme="b"><h1>End Call</h1></a></li>
+				<li><a class="endCall" style="background-color: red;" href="#zoomcontact1" data-theme="b"><h1>End Call</h1></a></li>
 			</ul>
 		</nav>
 	</footer>   
@@ -343,7 +343,7 @@
 	<footer data-role="footer" data-position="fixed">
 		<nav data-role="navbar">
 			<ul>
-				<li><a class="endCall" href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
+				<li><a class="endCall" style="background-color: red;" href="#zoomcontact1" data-theme="b"><h1>End Video Call</h1></a></li>
 			</ul>
 		</nav>
 	</footer>   

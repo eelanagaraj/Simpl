@@ -266,6 +266,7 @@ input {
     font-weight: bold;
     font-size: 20px;
     padding: 1em !important;
+    color: black;
 }
 
 .boldno {
@@ -273,6 +274,7 @@ input {
     font-weight: bold;
     font-size: 20px;
     padding: 1em !important;
+    color: black;
 }
 
 
@@ -293,6 +295,9 @@ input {
     border: 0;
 }
 
+.num-btn {
+    font-size: 100% !important;
+}
 
 /* ==========================================================================
    Helper classes

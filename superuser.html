@@ -33,15 +33,15 @@
 	<div class="ui-field-contain">
 		<label for="basic">Username:</label>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
-			<input type="text" name="name" id="basic" value>
+			<input type="text" oninput="activateLogin()" name="name" id="login_username" value>
 		</div>
 		<label for="password">Password: </label>
 		<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-insert">
-			<input type="password" name="password" id="password" value>
+			<input type="password" oninput="activateLogin()" name="password" id="login_password" value>
 		</div>
 
 	</div>
-	<a href="#manage_accounts" button class="ui-btn blue-btn">Login</a>
+	<a button id="login_btn"class="ui-btn grayed-out">Login</a>
 </div>
 
 <div data-role="page" id="new">

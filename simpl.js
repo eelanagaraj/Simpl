@@ -138,7 +138,7 @@ function loadContacts () {
 	var starter_pack = {contact_info: 
 		[{id: 0, name: "Eela Nagaraj", photo_file_path:"images/eela.png", relation: "Granddaughter", phone_num: "6507966950", email_addr: "eelanagaraj@gmail.com", show:1},
 		 {id: 1, name: "Charlene Hwang", photo_file_path:"images/charlene.png", relation: "Granddaughter", phone_num: "7146582560", email_addr:" charlenehwang@college.harvard.edu", show:1},
-		 {id: 2, name: "Bob Smith", photo_file_path:"images/man.png", relation: "Friend", phone_num:"193128124", email_addr:"bob@gmail.com", show:1}
+		 {id: 2, name: "Earl Smith", photo_file_path:"images/man.png", relation: "Friend", phone_num:"193128124", email_addr:"earl@gmail.com", show:1}
 		], settings:0}
 	return stuff ? stuff : starter_pack
 }
@@ -201,7 +201,7 @@ function testerMessages () {
 	var now1 = (new Date ()).toDateString();
 	var now2 = (new Date ()).toDateString();
 	var now3 = (new Date ()).toDateString();
-	return [{message_r_id: 0, date_time: now3, read: false, from: 0, content: eelamsg}, {message_r_id: 1, date_time: now2, read: false, from: 1, content: charlenemsg}, {message_r_id: 2, date_time: now1, read: true, from: 2, content: bowenmsg}]
+	return [{message_r_id: 2, date_time: now1, read: true, from: 2, content: bowenmsg}, {message_r_id: 0, date_time: now2, read: false, from: 0, content: eelamsg}, {message_r_id: 1, date_time: now3, read: false, from: 1, content: charlenemsg}]
 }
 
 
@@ -308,7 +308,7 @@ function renderInbox() {
 	var date_time;
 	var img_path;
 	var is_read;
-	for (var i = messages.sent.length - 1; i >= 0; i--) {
+	for (var i = messages.received.length - 1; i >= 0; i--) {
 		id_num = messages.received[i].from;
 		name = contacts.contact_info[id_num].name;
 		img_path = contacts.contact_info[id_num].photo_file_path;
@@ -340,7 +340,7 @@ function viewMessage (message_id) {
 	var	html = '<div><h2><b>From: ' + name + '</b></h2>'
 	html += '<h3>Date: ' + date + '</h3></div>'
 	html += '<div class="msg-date">' + message_content + '</div>'
-	html += '<div><a href="#message" onClick="updateFunctionPages(' + id + ')" class="reply-btn ui-btn" style="color: black; text-decoration: none;">Reply</a></div>'
+	html += '<div><a href="#message" onClick="updateFunctionPagesReply(' + id + ')" class="reply-btn ui-btn" style="color: black; text-decoration: none;">Reply</a></div>'
 	$("#message_display").html(html)
 	messages.received[message_id].read = true;
 	renderInbox();
@@ -406,6 +406,26 @@ function updateFunctionPages (id) {
 	// update message linking pages
 }
 
+function updateFunctionPagesReply (id) {
+	var calling_label = "Calling " + contacts.contact_info[id].name;
+	var zoompage = "#zoomcontact" + id;
+	var html = '<img src="' + contacts.contact_info[id].photo_file_path
+	html += '" style="width: 80%" align="middle">'
+	var endcallhtml = '<a href=' + zoompage + ' data-theme="b" <h1>End Call</h1></a>'
+	var message_html = '<h1>To: ' + contacts.contact_info[id].name + '</h1>'
+	var on_send = '<a href="#sent" onclick="textMessage(' + id +')" class="ui-btn reply-btn">Send</a>'
+	$("#messageto").html(message_html);
+	$(".who_calling").html(calling_label);
+	$(".call_image").html(html);
+	$(".endCall").attr("href",zoompage);
+	$("#back_sent_page").attr("href", "#inbox");
+	$("#backto").attr("href", zoompage);
+	$("#send_btn").html(on_send);
+	$("#backto").attr("href", zoompage);
+	clearMessageFields();
+	renderInbox();
+}
+
 
 /* helper function that returns contact html to the main display list*/
 function getContactListHTML (id) {
@@ -421,6 +441,9 @@ function getContactListHTML (id) {
 
 }
 
+function doubleBack () {
+	history.go(-2);
+}
 
 function callClock1() {
 	var secs1 = 0;

@@ -255,6 +255,13 @@ function activateFB () {
 	}
 }
 
+function activateLogin() {
+	if ($("#login_username").val() && $("#login_password").val()) {
+		$("#login_btn").attr("href","#manage_accounts");
+		$("#login_btn").attr("class", "ui-btn blue-btn");
+	}
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~HTML PAGE RENDERING~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
